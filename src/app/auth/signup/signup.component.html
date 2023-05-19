@@ -1,0 +1,26 @@
+<div class="signup">
+  If is your first time here, please signup to proceed to the application
+
+  <!-- TODO: Impostare Passowrd almeno 6 caratteri o altra validazione -->
+  <!-- TODO: Impostare Conferma Password? -->
+
+  <form #signup="ngForm" (ngSubmit)="onSubmitSignup(signup)">
+      <label for="user">Username:</label>
+      <input type="text" name="user" id="user" placeholder="Username..." ngModel required>
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" placeholder="Your email..." ngModel required>
+      <label for="email">Password:</label>
+      <input type="password" name="password" id="password" placeholder="Choose a password..." ngModel required>
+      <fieldset>
+        <legend>Gender:</legend>
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="male" value="male" ngModel required>
+      <label for="female">Female</label>
+      <input type="radio" name="gender" id="female" value="female" ngModel required>
+      </fieldset>
+      <button [disabled]="!signup.valid">Signup</button>
+  </form>
+
+  Already have an account?
+  <a routerLink="/login">Go to Login</a>
+  </div>
