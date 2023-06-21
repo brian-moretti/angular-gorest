@@ -14,7 +14,7 @@ export class SignupComponent {
   value = '';
 
   onSubmitSignup(form: NgForm) {
-    const userName = form.value.user;
+     const userName = form.value.user;
     const email = form.value.email;
     const gender = form.value.gender;
     const password = form.value.password;
@@ -23,7 +23,7 @@ export class SignupComponent {
       .signupNewUser(userName, email, password, gender)
       .subscribe((data) => console.log(data));
     this.router.navigate(['/login']);
-    form.reset();
+    form.reset(); 
   }
 }
 

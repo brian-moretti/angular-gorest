@@ -23,6 +23,13 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DropdownModule } from 'primeng/dropdown';
 import { SidebarModule } from 'primeng/sidebar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PasswordModule } from 'primeng/password';
+import { FieldsetModule } from 'primeng/fieldset';
+
+import { HomeComponent } from './log/home/home.component';
+import { LoginComponent } from './log/login/login.component';
+import { LogoutComponent } from './log/logout/logout.component';
+import { SignupComponent } from './log/signup/signup.component';
 
 import { DashboardComponent } from './users/components/dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './users/components/dashboard-header/dashboard-header.component';
@@ -39,6 +46,10 @@ import { FooterComponent } from './users/components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    SignupComponent,
+    LoginComponent,
+    LogoutComponent,
     DashboardComponent,
     DashboardHeaderComponent,
     SidebarMenuComponent,
@@ -55,6 +66,8 @@ import { FooterComponent } from './users/components/footer/footer.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    PasswordModule,
+    FieldsetModule,
     ReactiveFormsModule,
     InputTextModule,
     PaginatorModule,
