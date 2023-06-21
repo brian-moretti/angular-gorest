@@ -1,0 +1,33 @@
+<div class="login">
+  <div class="login-container">
+
+  <h3>Already signup? Please login to proceed to the application</h3>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm)" class="home-form">
+    <span class="p-float-label">
+    <input type="text" name="username" id="username" pInputText formControlName="username" placeholder=""/>
+    <label htmlFor="username">Username</label>
+    </span>
+    <span class="p-float-label">
+      <input type="email" name="email" id="email" placeholder="" pInputText formControlName="email"/>
+      <label htmlFor="email">Email</label>
+    </span>
+    <span class="p-float-label">
+    <p-password formControlName="password" id="password" placeholder="" [toggleMask]="true" [feedback]="false"></p-password>
+    <label for="password">Password</label>
+    </span>
+    <p-button label="Login" [disabled]="!loginForm.valid"></p-button>
+
+
+  </form>
+  <div class="registration">
+
+  <span>Not registrated yet?</span>
+  <p-button
+  label="Go to Signup"
+  routerLink="/signup"
+  icon="pi pi-pencil"
+  iconPos="right"
+></p-button>  </div>
+  </div>
+</div>

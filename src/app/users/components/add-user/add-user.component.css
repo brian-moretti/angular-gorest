@@ -1,0 +1,46 @@
+.add-user{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  margin: 0 auto;
+  border: 1px solid red;
+  padding: 5%;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.close{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  padding: 5%;
+  border: 1px solid yellow;
+  border-radius: 12px;
+  position: relative;
+}
+
+
+.gender{
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+
+:host ::ng-deep{
+  .p-button{
+    width: 100%;
+  }
+}

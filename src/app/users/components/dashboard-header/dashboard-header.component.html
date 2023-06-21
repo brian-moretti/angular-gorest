@@ -1,0 +1,18 @@
+<div class="filter">
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="searchQuery"
+    [placeholder]=""
+    name="searchQuery"
+    (input)="filter()"
+  />
+  <p-selectButton
+    [options]="stateOptions"
+    [(ngModel)]="searchField"
+    name="searchField"
+    optionLabel="label"
+    optionValue="value"
+    (change)="filter()"
+  ></p-selectButton>
+</div>

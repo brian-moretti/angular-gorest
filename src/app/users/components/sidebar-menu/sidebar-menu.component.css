@@ -1,0 +1,41 @@
+.container-menu{
+  height: 100vh;
+  position: fixed;
+  background-color: var(--color-brown);
+  width: 200px;
+  top: 0;
+  left: 0;
+  border-right: 2.5px solid var(--color3);
+  overflow: hidden;
+  padding: 15px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  /* INSERIRE MARGINE */
+}
+
+.title{
+  padding: 5px 6px;
+  border-radius: 6px;
+  font-size: 24px;
+  color: var(--color-dust-white)
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: .65;
+}
+
+:host ::ng-deep{
+    .p-button.p-button-link{
+      color: var(--color-dust-white);
+      font-weight: bold;
+      width: 100%;
+      border: 2px solid var(--color-dust-white);
+    }
+    .p-button.p-button-link:hover{
+      color: var(--color-dust-white);
+    }
+  }

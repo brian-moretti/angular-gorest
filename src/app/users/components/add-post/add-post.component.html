@@ -1,0 +1,25 @@
+<form [formGroup]="newPostForm" (ngSubmit)="form(newPostForm)">
+  <div formGroupName="post">
+    <span class="p-float-label">
+      <input pInputText id="title" formControlName="title" name="title" />
+      <label htmlFor="title">Title:</label>
+    </span>
+  </div>
+  <div formGroupName="post">
+    <span class="p-float-label">
+      <textarea
+        id="float-input"
+        rows="1"
+        cols="30"
+        pInputTextarea
+        formControlName="body"
+      ></textarea>
+      <label for="float-input">Summary</label>
+    </span>
+  </div>
+  <p-button
+    type="submit"
+    label="CREATE POST"
+    class="p-button-success"
+  ></p-button>
+</form>

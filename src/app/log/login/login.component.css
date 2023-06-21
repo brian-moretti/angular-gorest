@@ -1,0 +1,34 @@
+.login {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 3em 0;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.login-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.home-form{
+  gap: 30px
+}
+
+:host ::ng-deep {
+  .p-password {
+    width: 100%;
+  }
+  .p-component {
+    width: 100%;
+    /* !ATTENZIONE CHE LO APPLICA A TUTTI GLI ELEMENTI */
+  }
+
+}

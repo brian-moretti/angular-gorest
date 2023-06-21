@@ -1,0 +1,52 @@
+.signup {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 3em 0;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.signup-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+:host ::ng-deep {
+  .p-password {
+    width: 100%;
+  }
+  .p-component {
+    width: 100%;
+    /* !ATTENZIONE CHE LO APPLICA A TUTTI GLI ELEMENTI */
+  }
+
+  .p-fieldset {
+    margin-top: 15px;
+  }
+
+  .p-fieldset-legend {
+    margin-left: 10px;
+  }
+
+  .p-fieldset-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .p-fieldset-content label {
+    margin-left: 10px;
+  }
+
+  .home-form .p-button {
+    margin-top: 16px;
+  }
+
+}

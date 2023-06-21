@@ -1,0 +1,71 @@
+.main-container {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  padding: 25px 50px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px auto 30px auto;
+}
+
+.user-posts {
+  border: 1px var(--color-brown) solid;
+  box-shadow: 0 0 5px 1px var(--color-brown);
+  border-radius: 8px;
+  margin: 25px auto;
+  padding: 15px;
+  position: relative;
+  color: var(--color-brown);
+}
+
+.post-info {
+  border: 1px solid var(--color-brown);
+  background-color: var(--color-light-beige);
+  box-shadow: 0 0 5px 1px var(--color-brown);
+  margin: 15px auto;
+  border-radius: 12px;
+  max-width: 90%;
+  padding: 10px 30px;
+}
+
+.comment-info {
+  margin: 15px auto;
+  max-width: 70%;
+  position: relative;
+}
+
+.comment-info .comment {
+  position: absolute;
+  top: 50%;
+  left: -2%;
+  transform: translate(-50%, -50%);
+}
+
+.adding-post {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.remove-comment{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  color: var(--color5);
+}
+
+.remove-comment .pi-trash{
+  font-size: 18px;
+}
+
+.space {
+  margin: 15px 0;
+  padding: 15px;
+}

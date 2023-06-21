@@ -1,0 +1,88 @@
+/* .pi {
+  margin-right: 10px;
+}
+
+.main-content {
+  margin: 40px auto;
+}
+
+.profile-info{
+  border: 1px solid red;
+  padding: 5px;
+}
+ */
+
+.main-container {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  padding: 25px 50px;
+}
+
+.user-profile {
+  margin: 20px auto;
+  width: 40%;
+  background-color: var(--color-dust-white);
+  box-shadow: 3px 3px 3px 0 var(--color-brown);
+  color: var(--color-brown);
+  padding: 16px 24px;
+  border-radius: 10px;
+}
+
+.pi {
+  margin-right: 8px;
+}
+
+.post-info {
+  margin: 15px auto;
+  border-radius: 12px;
+  max-width: 90%;
+  padding: 10px 30px;
+}
+
+.comment-info {
+  margin: 15px auto;
+  max-width: 70%;
+  position: relative;
+}
+
+.comment-info .comment {
+  position: absolute;
+  top: 50%;
+  left: -2%;
+  transform: translate(-50%, -50%);
+}
+
+.adding-post {
+  position: absolute;
+  top: -4.5%;
+  right: -2%;
+}
+
+:host ::ng-deep {
+  .p-tabview {
+    max-width: calc(100% - 200px);
+    margin: 0 auto;
+  }
+  .p-tabview-nav {
+    gap: 1px;
+  }
+
+  .p-tabview .p-tabview-nav {
+    background: var(--color-light-beige);
+  }
+  /*! FIX */
+  .p-tabview-panels {
+    position: relative;
+    background: var(--color-dust-white);
+    box-shadow: 3px 3px 3px 1px var(--color-brown);
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    background: var(--color-dust-white);
+  }
+  /*
+  .p-tabview-panels .adding-post{
+    position: absolute;
+    right: 5%;
+  } */
+}

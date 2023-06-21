@@ -1,0 +1,84 @@
+<app-sidebar-menu></app-sidebar-menu>
+<main class="main-container">
+  <ng-container *ngIf="profile">
+    <section class="user-profile">
+      <i
+        class="pi pi-circle-fill"
+        [ngClass]="profile.status === 'active' ? 'green' : 'red'"
+      ></i
+      ><span class="user-id" [ngStyle]="{ 'font-size': '10px' }">{{
+        profile.id
+      }}</span>
+      <h2><i class="pi pi-user"></i>{{ profile.name }}</h2>
+      <h3><i class="pi pi-envelope"></i>{{ profile.email }}</h3>
+      <p>{{ profile.gender }}</p>
+    </section>
+
+    <section class="user-content">
+      <p-tabView>
+        <p-button
+          class="adding-post"
+          (onClick)="showNewPostForm()"
+          [icon]="hidden ? 'pi pi-plus' : 'pi pi-minus'"
+        ></p-button>
+        <app-add-post
+          [hidden]="hidden"
+          (formInfo)="addUserPost($event)"
+        ></app-add-post>
+        <p-tabPanel header="Posts">
+          <ng-container *ngIf="posts?.length; else noPost">
+            <ng-container *ngFor="let post of posts; index as i">
+              <div class="post-info">
+                <h6>Post n. {{ post.id }}</h6>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.body }}</p>
+              </div>
+              <ng-container *ngIf="postComments(post.id).length">
+                <ng-container *ngFor="let comment of postComments(post.id)">
+                  <div class="comment-info">
+                    <span class="comment"><i class="pi pi-comment"></i></span>
+                    <h6>{{ comment.name }} - {{ comment.email }}</h6>
+                    <h3>{{ comment.body }}</h3>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <app-add-comment
+                (comment)="addComment(post.id!, $event)"
+              ></app-add-comment>
+            </ng-container>
+          </ng-container>
+        </p-tabPanel>
+        <p-tabPanel header="Todos">
+          <ng-container *ngIf="todos?.length; else noTodos">
+            <div *ngFor="let todo of todos; index as i">
+              <h3>{{ todo.title }} {{ i + 1 }}</h3>
+            </div>
+          </ng-container>
+        </p-tabPanel>
+      </p-tabView>
+    </section>
+    <!--
+      [postId]="post.user_id"
+
+
+         <ng-container *ngIf="comments?.length; else noComment">
+      <div *ngFor="let comment of comments; index as i">
+        <h3>{{ comment.name }} {{ i + 1 }}</h3>
+      </div>
+    </ng-container> -->
+
+    <ng-template #noPost>
+      <p>For this user, 0 posts has been found</p>
+      <app-add-post (formInfo)="addUserPost($event)"></app-add-post>
+    </ng-template>
+    <ng-template #noComment>
+      <p>For this user, 0 comments has been found</p>
+      <h3>Be the 1° to leave a comment</h3>
+    </ng-template>
+    <ng-template #noTodos>
+      <p>For this user, 0 todos has been found</p>
+    </ng-template>
+  </ng-container>
+
+  <!-- TODO: FIX WITH AGGIUNTA COMPONENTI ADD-COMMENTI -->
+</main>

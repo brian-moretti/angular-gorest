@@ -1,0 +1,88 @@
+<!--
+<ng-container *ngFor="let id of userId">
+  <p>{{id}}</p>
+  <ng-container *ngIf="posts?.length">
+  <div *ngFor="let post of posts">
+      <h5 [routerLink]="['/user-details', post.user_id]">{{post.user_id}}</h5>
+      <h2>{{post.title}}</h2>
+      <p>{{post.body}}</p>
+      <ng-container *ngIf="comments?.length; else noComment">
+        <div *ngFor="let comment of comments">
+          <p>{{comment.body}}</p>
+        </div>
+      </ng-container>
+    </div>
+    <p-button (click)="showFormPost()" label="Add post"></p-button>
+  </ng-container>
+  <app-add-post [hidden]="hidden" (formInfo)="addUserPost(id, $event)"></app-add-post>
+</ng-container>
+
+<ng-template #noComment>
+  <p>No comment found</p>
+</ng-template> -->
+<app-sidebar-menu></app-sidebar-menu>
+<main class="main-container">
+  <div class="header">
+    <app-filter-posts (filterData)="filterPost($event)"></app-filter-posts>
+    <p-dropdown
+      (onChange)="usersShowedUpdate(userXPage)"
+      [options]="numberOfUsers"
+      [(ngModel)]="userXPage"
+    ></p-dropdown>
+  </div>
+  <!-- ! NECESSARIO ID POST -->
+  <ng-container *ngFor="let id of userId">
+    <section class="user-posts">
+      <h4>Username: - ID: {{ id }}</h4>
+      <app-add-post
+        [hidden]="hidden"
+        (formInfo)="addUserPost(id, $event)"
+      ></app-add-post>
+      <p-button
+        class="adding-post"
+        (onClick)="showNewPostForm(id)"
+        [icon]="hidden ? 'pi pi-plus' : 'pi pi-minus'"
+      ></p-button>
+
+      <div *ngIf="userPosts(id).length; else noPost">
+        <ng-container *ngFor="let post of userPosts(id)">
+          <div class="post-info">
+            <h4>Title: {{ post.title }}</h4>
+            <p>Body: {{ post.body }}</p>
+            <ng-container *ngFor="let comment of postComments(post.id)">
+              <div class="comment-info">
+                <span class="comment"><i class="pi pi-comment"></i></span>
+                <h4>{{ comment.name }} - {{ comment.email }}</h4>
+                <p>{{ comment.body }}</p>
+                <button class="remove-comment" (click)="removeComment(comment.id!)">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+            </ng-container>
+            <app-add-comment
+              (comment)="addComment(post.id!, $event)"
+            ></app-add-comment>
+            <button (click)="removePost(post.id)">Delete Post</button>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+  </ng-container>
+
+  <!-- <ng-container *ngFor="let post of posts">
+  <div class="space">
+    <p>PostID: {{ post.id }}</p>
+    <p>UserID: {{ post.user_id }}</p>
+    <p>Title: {{ post.title }}</p>
+    <p>Body: {{ post.body }}</p>
+    <app-add-comment (comment)="addComment(post.id!, $event)"></app-add-comment>
+    <ng-container *ngFor="let comment of postComments(post.id)">
+      <h6>{{ comment.id }} & {{ comment.post_id }}</h6>
+      <p>{{ comment.name }}</p>
+    </ng-container>
+  </div>
+</ng-container> -->
+</main>
+<ng-template #noPost>
+  <p>For this user, 0 posts has been found</p>
+</ng-template>

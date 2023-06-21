@@ -1,0 +1,55 @@
+<main class="add-user">
+
+
+  <form #newUserForm="ngForm" (ngSubmit)="createUser(newUserForm)">
+    <button class="close" type="button" (click)="close()"><i class="pi pi-times-circle"></i></button>
+    <span class="p-float-label">
+      <input
+        pInputText
+        id="username"
+        [(ngModel)]="newUser.name"
+        name="username"
+      />
+      <label htmlFor="username">Username</label>
+    </span>
+    <span class="p-float-label">
+      <input pInputText id="email" [(ngModel)]="newUser.email" name="email" />
+      <label htmlFor="email">Email</label>
+    </span>
+    <div class="gender">
+      <div>
+        <p-radioButton
+          name="gender"
+          value="Male"
+          [(ngModel)]="newUser.gender"
+          inputId="male"
+        ></p-radioButton>
+        <label for="male" class="ml-2">Male</label>
+      </div>
+
+      <div>
+        <p-radioButton
+          name="gender"
+          value="Female"
+          [(ngModel)]="newUser.gender"
+          inputId="female"
+        ></p-radioButton>
+        <label for="female" class="ml-2">Female</label>
+      </div>
+    </div>
+
+    <p-selectButton
+      [options]="stateOptions"
+      [(ngModel)]="newUser.status"
+      optionLabel="label"
+      optionValue="value"
+      name="status"
+    ></p-selectButton>
+
+    <p-button
+      type="submit"
+      label="CREATE USER"
+      class="p-button-success"
+    ></p-button>
+  </form>
+</main>

@@ -1,6 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+/*@import "primeng/resources/themes/arya-green/theme.css";*/
+@import "primeng/resources/themes/lara-light-teal/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+:root {
+  /*
+  --color2: rgb(108, 182, 255);
+  --color3: rgba(255, 255, 255, 1);
+  --color4: rgba(0, 0, 0, 0.87);
+  */
+  --color: rgb(129, 199, 132);
+  --color5: rgb(244, 112, 103);
+  --color-theme: #14b8a6;
+
+  --color-beige: rgb(148, 120, 83);
+  --color-brown: rgb(127, 86, 57);
+  --color-light-beige: rgb(229, 217, 205);
+  --color-dust-white: rgb(243, 244, 241);
+  --color-sand: #cbbba3;
+ /* --color-desert: #c8c0ab;*/
+ /* --color-light-desert: #ece4d7;*/
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-light-beige) /*#F9F5F0*/;
+  width: calc(100%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.home-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 35px;
+  margin: 0 auto;
+  padding: 3%;
+  width: 40%;
+  border: 1px solid var(--color);
+}
+
+.green {
+  color: var(--color);
+  animation: lighter 1s linear infinite alternate;
+}
+
+.red {
+  color: var(--color5);
 }

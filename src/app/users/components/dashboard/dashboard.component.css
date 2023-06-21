@@ -1,0 +1,152 @@
+/* .data-container {
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: calc(100% - 200px);
+  margin-left: 200px
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+
+.user {
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: var(--color2);
+  margin: 1.5%;
+  padding: 1% 1.5% 3%;
+  flex: 0 0 30%;
+  width: 100%;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+.pi {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+.user-name {
+}
+
+@keyframes lighter {
+  0% {
+    filter: brightness(100%);
+  }
+  100% {
+    filter: brightness(150%);
+  }
+}
+ */
+
+.main-container {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  padding: 25px 50px;
+}
+
+.header-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/*RIQUADRO PULSANTE ADD-USER*/
+
+.users-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.user {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--color-dust-white);
+  color: var(--color-brown);
+  flex: 1 1 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  filter: drop-shadow(3px 3px var(--color-brown));
+  box-shadow: 3px 3px 3px 0 var(--color-brown);
+  gap: 25px;
+}
+
+.user:last-of-type {
+  margin-right: auto;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.details i {
+  margin-right: 8px;
+}
+
+.user-id{
+  display: flex;
+  align-items: center;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+:host ::ng-deep {
+  .edit-btn > * {
+    background: var(--color-sand) /*#ece4d7*/;
+    border: none;
+  }
+
+  .edit-btn > *:hover{
+    background: var(--color-brown);
+  }
+
+  .delete-btn > *{
+    background: /*#c8c0ab*/ #14B8A6;
+    border: none;
+  }
+
+  .users-container .buttons .pi{
+    font-size: 1.2rem;
+  }
+
+  .header-dashboard .add-btn .p-button{
+    background: var(--color-theme);
+    color: var(--color-dust-white);
+  }
+  .header-dashboard .add-btn .p-button:hover{
+    background:  #0D9488;
+    color: var(--color-dust-white);
+  }
+
+
+
+  .header-dashboard .add-btn .p-button .pi{
+    font-size: 1.2rem;
+  }
+
+}

@@ -1,0 +1,59 @@
+<div class="signup">
+  <div class="signup-container">
+    <h3>
+      If is your first time here, please signup to proceed to the application
+    </h3>
+
+    <!-- TODO: Impostare Passowrd almeno 6 caratteri o altra validazione -->
+    <!-- TODO: Impostare Conferma Password? -->
+
+    <form
+      #signup="ngForm"
+      (ngSubmit)="onSubmitSignup(signup)"
+      class="home-form"
+    >
+      <label htmlFor="username">Username:</label>
+      <input pInputText id="username" ngModel name="username" required />
+
+      <label htmlFor="email">Your email:</label>
+      <input pInputText id="email" ngModel name="email" required />
+
+      <label htmlFor="password">Choose a password:</label>
+      <p-password ngModel name="password" [toggleMask]="true"></p-password>
+
+      <p-fieldset legend="Gender:">
+        <div>
+          <p-radioButton
+            name="gender"
+            value="Male"
+            ngModel
+            inputId="male"
+            required
+          ></p-radioButton>
+          <label for="male">Male</label>
+        </div>
+        <div>
+          <p-radioButton
+            name="gender"
+            value="Female"
+            ngModel
+            inputId="female"
+            required
+          ></p-radioButton>
+          <label for="female">Female</label>
+        </div>
+      </p-fieldset>
+      <p-button label="Signup" [disabled]="!signup.valid"></p-button>
+    </form>
+
+    <div class="registration">
+      <span>Already have an account?</span>
+      <p-button
+        label="Go to Login"
+        routerLink="/login"
+        icon="pi pi-sign-in"
+        iconPos="right"
+      ></p-button>
+    </div>
+  </div>
+</div>
