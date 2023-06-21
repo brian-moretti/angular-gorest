@@ -23,7 +23,9 @@ export class Account {
     private _token: string,
     private _expDate: Date,
     public apiKeyGoRest: string
-  ) {}
+  ) /*     public refreshToken: string,
+    public username: string
+ */ {}
 
   get token() {
     if (!this._expDate || new Date() > this._expDate) {

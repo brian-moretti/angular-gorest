@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           expDate,
           this.gorest.gorestAPI
         );
-        // TODO -> TOKEN di GOFOREST API per l'accesso alla dashboard
+        // TODO -> TOKEN di GOREST API per l'accesso alla dashboard
         localStorage.setItem('user', JSON.stringify(this.gorest.profile));
         console.log(this.gorest.profile);
         this.router.navigate(['/dashboard']);

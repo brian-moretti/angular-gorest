@@ -47,7 +47,7 @@ export class FirebaseService {
     id: string,
     token: string,
     expDate: Date,
-    apiKeyGoRest: string
+    apiKeyGoRest: string,
   ) {
     this.account = new Account(email, id, token, expDate, apiKeyGoRest);
     //? Da inserire proprietà per APIKEY GOREST

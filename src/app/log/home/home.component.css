@@ -1,9 +1,14 @@
+h1 {
+  text-align: center;
+  margin: 2% auto 0;
+}
+
 .home-page {
   width: 100%;
   max-width: 1320px;
   margin: 0 auto;
   max-height: 100vh;
-  height: 90vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +23,7 @@
   margin: 5% auto;
 }
 
-.home-dashboard{
+.home-dashboard {
   max-width: 1320px;
   width: 100%;
   margin: 0 auto;
@@ -46,18 +51,33 @@
   .p-divider-vertical {
     min-height: 60vh;
   }
-  .p-divider .p-divider-content{
-    padding: 1em .3em;
+  .p-divider .p-divider-content {
+    padding: 1em 0.3em;
     background-color: var(--color-theme);
   }
 
-  .p-divider.p-divider-vertical:before{
+  .p-divider.p-divider-vertical:before {
     border-left: 1.5px solid var(--color-theme);
   }
 
-
-  .home-dashboard .p-button{
+  .home-dashboard .p-button {
     font-size: 1em;
     padding: 8px 16px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home-page {
+    flex-direction: column;
+  }
+
+  .home-dashboard{
+    flex-direction: column;
+  }
+
+  :host ::ng-deep {
+    .p-divider-vertical {
+      min-height: 20vh;
+    }
   }
 }

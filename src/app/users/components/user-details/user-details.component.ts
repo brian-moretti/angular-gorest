@@ -87,6 +87,8 @@ export class UserDetailsComponent implements OnInit {
       console.log(data);
       this.posts.splice(0, 0, data);
     });
+    this.hidden = !this.hidden;
+
   }
 
   hidden: boolean = true;
