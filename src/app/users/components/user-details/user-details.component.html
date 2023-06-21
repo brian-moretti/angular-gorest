@@ -16,16 +16,17 @@
 
     <section class="user-content">
       <p-tabView>
-        <p-button
-          class="adding-post"
-          (onClick)="showNewPostForm()"
-          [icon]="hidden ? 'pi pi-plus' : 'pi pi-minus'"
-        ></p-button>
         <app-add-post
           [hidden]="hidden"
           (formInfo)="addUserPost($event)"
         ></app-add-post>
         <p-tabPanel header="Posts">
+          <p-button
+            [disabled]="posts.length ? false : true"
+            class="adding-post"
+            (onClick)="showNewPostForm()"
+            [icon]="hidden ? 'pi pi-plus' : 'pi pi-minus'"
+          ></p-button>
           <ng-container *ngIf="posts?.length; else noPost">
             <ng-container *ngFor="let post of posts; index as i">
               <div class="post-info">

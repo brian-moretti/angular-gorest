@@ -48,8 +48,13 @@
   }
   .p-divider .p-divider-content{
     padding: 1em .3em;
-    background-color: var(--color);
+    background-color: var(--color-theme);
   }
+
+  .p-divider.p-divider-vertical:before{
+    border-left: 1.5px solid var(--color-theme);
+  }
+
 
   .home-dashboard .p-button{
     font-size: 1em;

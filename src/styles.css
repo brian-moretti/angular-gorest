@@ -5,22 +5,15 @@
 @import "primeicons/primeicons.css";
 
 :root {
-  /*
-  --color2: rgb(108, 182, 255);
-  --color3: rgba(255, 255, 255, 1);
-  --color4: rgba(0, 0, 0, 0.87);
-  */
   --color: rgb(129, 199, 132);
   --color5: rgb(244, 112, 103);
   --color-theme: #14b8a6;
-
+  --color-light-theme: #99f6e4;
   --color-beige: rgb(148, 120, 83);
   --color-brown: rgb(127, 86, 57);
   --color-light-beige: rgb(229, 217, 205);
   --color-dust-white: rgb(243, 244, 241);
   --color-sand: #cbbba3;
- /* --color-desert: #c8c0ab;*/
- /* --color-light-desert: #ece4d7;*/
 }
 
 * {
@@ -46,6 +39,7 @@ a {
   align-items: center;
   gap: 20px;
   font-size: 16px;
+  margin-top: 1.5%;
 }
 
 .home-form {
@@ -55,7 +49,9 @@ a {
   margin: 0 auto;
   padding: 3%;
   width: 40%;
-  border: 1px solid var(--color);
+  box-shadow: 3px 3px 3px 1px var(--color-brown);
+  border-radius: 8px;
+  background-color: var(--color-dust-white);
 }
 
 .green {

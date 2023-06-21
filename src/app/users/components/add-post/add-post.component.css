@@ -3,17 +3,19 @@ form{
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 25px;
   max-width: 90%;
-  margin: 0 auto;
-  border: 1px solid red;
+  margin: 1% auto 2%;
   border-radius: 8px;
   padding: 10px;
 }
 
-textarea{
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 3px;
-  margin: 0;
+:host ::ng-deep{
+  .p-float-label.textarea {
+    display: flex;
+  }
+
+  .p-float-label.textarea label{
+    margin: auto;
+  }
 }

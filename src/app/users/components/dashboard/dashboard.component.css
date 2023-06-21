@@ -73,16 +73,15 @@
   border-radius: 8px;
   background-color: var(--color-dust-white);
   color: var(--color-brown);
-  flex: 1 1 25%;
   display: flex;
+  flex-basis: calc(33% - 14px);
   justify-content: space-between;
   align-items: center;
-  filter: drop-shadow(3px 3px var(--color-brown));
-  box-shadow: 3px 3px 3px 0 var(--color-brown);
+  box-shadow: 3px 3px 3px 1px var(--color-brown);
   gap: 25px;
 }
 
-.user:last-of-type {
+.user:last-child {
   margin-right: auto;
 }
 
@@ -97,15 +96,17 @@
   margin-right: 8px;
 }
 
-.user-id{
+.user-id {
   display: flex;
   align-items: center;
 }
 
-.user-info{
+.user-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .buttons {
@@ -114,39 +115,35 @@
   gap: 10px;
 }
 
-
 :host ::ng-deep {
   .edit-btn > * {
     background: var(--color-sand) /*#ece4d7*/;
     border: none;
   }
 
-  .edit-btn > *:hover{
+  .edit-btn > *:hover {
     background: var(--color-brown);
   }
 
-  .delete-btn > *{
-    background: /*#c8c0ab*/ #14B8A6;
+  .delete-btn > * {
+    background: /*#c8c0ab*/ #14b8a6;
     border: none;
   }
 
-  .users-container .buttons .pi{
+  .users-container .buttons .pi {
     font-size: 1.2rem;
   }
 
-  .header-dashboard .add-btn .p-button{
+  .header-dashboard .add-btn .p-button {
     background: var(--color-theme);
     color: var(--color-dust-white);
   }
-  .header-dashboard .add-btn .p-button:hover{
-    background:  #0D9488;
+  .header-dashboard .add-btn .p-button:hover {
+    background: #0d9488;
     color: var(--color-dust-white);
   }
 
-
-
-  .header-dashboard .add-btn .p-button .pi{
+  .header-dashboard .add-btn .p-button .pi {
     font-size: 1.2rem;
   }
-
 }

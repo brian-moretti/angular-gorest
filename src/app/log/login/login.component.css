@@ -18,6 +18,11 @@
   margin: 0 auto;
 }
 
+.login-container h3{
+  color: var(--color-brown);
+  border-bottom: 1.5px solid var(--color-brown);
+}
+
 .home-form{
   gap: 30px
 }

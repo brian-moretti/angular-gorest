@@ -4,17 +4,17 @@ form {
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 15px;
-  max-width: 90%;
-  margin: 0 10%;
-  border: 1px solid red;
+  max-width: 85%;
+  margin: 3% 10%;
+  border-radius: 8px;
+  padding: 5px 10px;
+  /*   border: 1px solid var(--color-brown);
+  box-shadow: 0.5px 0.5px 1px 0 var(--color-brown);
+ */
 }
 
 textarea {
-  padding: 4px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ced4da;
-  height: 31.2px;
+  width: 100%;
 }
 
 :host ::ng-deep {
@@ -29,6 +29,6 @@ textarea {
   }
 
   .p-float-label.textarea {
-    
+    display: flex;
   }
 }

@@ -34,9 +34,9 @@
 
 .post-info {
   margin: 15px auto;
-  border-radius: 12px;
   max-width: 90%;
   padding: 10px 30px;
+  border-left: 1px solid var(--color-theme);
 }
 
 .comment-info {
@@ -50,12 +50,14 @@
   top: 50%;
   left: -2%;
   transform: translate(-50%, -50%);
+  color: var(--color-theme);
 }
 
 .adding-post {
   position: absolute;
-  top: -4.5%;
-  right: -2%;
+  top: 0%;
+  right: 0%;
+  transform: translate(50%, -50%);
 }
 
 :host ::ng-deep {

@@ -12,23 +12,25 @@
 }
 
 .user-posts {
-  border: 1px var(--color-brown) solid;
-  box-shadow: 0 0 5px 1px var(--color-brown);
+  box-shadow: 3px 3px 3px 1px var(--color-brown);
   border-radius: 8px;
-  margin: 25px auto;
+  margin: 5% auto;
   padding: 15px;
   position: relative;
   color: var(--color-brown);
+  background-color: var(--color-dust-white);
+}
+
+.user-posts > h4{
+  color: var(--color-theme);
 }
 
 .post-info {
-  border: 1px solid var(--color-brown);
-  background-color: var(--color-light-beige);
-  box-shadow: 0 0 5px 1px var(--color-brown);
-  margin: 15px auto;
-  border-radius: 12px;
+  margin: 5% auto;
+  border-left: 1px solid var(--color-theme);
   max-width: 90%;
   padding: 10px 30px;
+  position: relative;
 }
 
 .comment-info {
@@ -48,6 +50,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  transform: translate(50%, -50%);
 }
 
 .remove-comment{
@@ -63,6 +66,29 @@
 
 .remove-comment .pi-trash{
   font-size: 18px;
+}
+
+.remove-post{
+  background-color: inherit;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  padding: 6px;
+  background-color: var(--color5);
+  box-shadow: 3px 3px 3px 1px var(--color-brown);
+  color: var(--color-dust-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 3;
+}
+
+.remove-post .pi-trash{
+  font-size: 1.5rem;
 }
 
 .space {

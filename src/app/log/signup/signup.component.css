@@ -18,6 +18,12 @@
   margin: 0 auto;
 }
 
+.signup-container h3{
+  color: var(--color-brown);
+  border-bottom: 1.5px solid var(--color-brown)
+}
+
+
 :host ::ng-deep {
   .p-password {
     width: 100%;

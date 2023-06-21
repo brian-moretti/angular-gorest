@@ -42,6 +42,8 @@ export class UserPostsComponent implements OnInit {
       from(this.posts).subscribe((post) => {
         this.getPostsComments(post.id);
       });
+
+
     });
   }
 
@@ -99,14 +101,14 @@ export class UserPostsComponent implements OnInit {
   hidden: boolean = true;
 
   showNewPostForm(id: number) {
-    this.userId.filter((key) => {
-      if (key == id) {
-        console.log(key, id);
-//! FARE IN MODO CHE APRA SOLO SULLO USER VOLUTO E NON SU TUTTI
+    this.userId.forEach(key => {
+      if(key == id){
         this.hidden = !this.hidden;
-        return;
       }
+
     });
+    //this.userId.filter(key => )
+//! FARE IN MODO CHE APRA SOLO SULLO USER VOLUTO E NON SU TUTTI
   }
 
   usersShowedUpdate(newCount: number) {

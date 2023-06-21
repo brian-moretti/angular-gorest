@@ -22,6 +22,7 @@ import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { DropdownModule } from 'primeng/dropdown';
 import { SidebarModule } from 'primeng/sidebar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { DashboardComponent } from './users/components/dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './users/components/dashboard-header/dashboard-header.component';
@@ -57,6 +58,7 @@ import { FooterComponent } from './users/components/footer/footer.component';
     ReactiveFormsModule,
     InputTextModule,
     PaginatorModule,
+    InputTextareaModule,
     SidebarModule,
     DividerModule,
     DropdownModule,
