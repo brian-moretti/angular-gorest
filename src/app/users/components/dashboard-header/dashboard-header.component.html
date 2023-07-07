@@ -3,11 +3,12 @@
     type="text"
     pInputText
     [(ngModel)]="searchQuery"
-    [placeholder]=""
+    placeholder="Search by..."
     name="searchQuery"
     (input)="filter()"
   />
   <p-selectButton
+    [ngStyle]="{ width: '100%' }"
     [options]="stateOptions"
     [(ngModel)]="searchField"
     name="searchField"

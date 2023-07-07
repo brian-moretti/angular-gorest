@@ -1,0 +1,5 @@
+:host ::ngdeep {
+  .p-message {
+    z-index: 6;
+  }
+}

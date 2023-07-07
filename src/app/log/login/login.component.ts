@@ -1,6 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Message } from 'primeng/api';
+import { AuthService } from 'src/app/auth/auth.service';
+import { ErrorsService } from 'src/app/services/errors.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { GorestService } from 'src/app/services/gorest.service';
 
@@ -11,16 +15,20 @@ import { GorestService } from 'src/app/services/gorest.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errorMessage: string = '';
+  message!: Message[]
 
   constructor(
     private router: Router,
     private firebase: FirebaseService,
-    private gorest: GorestService
+    private gorest: GorestService,
+    private guard: AuthService,
+    private handleError: ErrorsService
   ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
+      username: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
@@ -30,29 +38,31 @@ export class LoginComponent implements OnInit {
     const userName = form.value.username;
     const email = form.value.email;
     const password = form.value.password;
+    this.errorMessage = '';
     console.log(form, form.value);
-    this.firebase
-      .loginUser(userName, email, password)
-      .subscribe((data: any) => {
-        console.log(data);
+    this.firebase.loginUser(email, password, userName).subscribe({
+      next: (data: any) => {
         const expDate = new Date(new Date().getTime() + data.expiresIn * 1000);
+        data.displayName = userName;
+        console.log(data);
+        console.log(expDate);
         this.firebase.createUserStorage(
+          data.displayName,
           data.email,
           data.localId,
           data.idToken,
           expDate,
           this.gorest.gorestAPI
         );
-        // TODO -> TOKEN di GOREST API per l'accesso alla dashboard
-        localStorage.setItem('user', JSON.stringify(this.gorest.profile));
-        console.log(this.gorest.profile);
+        this.guard.isLogged = true;
         this.router.navigate(['/dashboard']);
-      });
-  }
-
-  goHome() {
-    //? TEST LOCAL STORAGE PROPERTY
-    localStorage.setItem('apiKey', this.gorest.gorestAPI);
-    console.log(localStorage.getItem('apiKey'));
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleLoginErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
+    });
   }
 }

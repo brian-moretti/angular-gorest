@@ -4,27 +4,35 @@
     <app-dashboard-header
       (filterData)="filterUsers($event)"
     ></app-dashboard-header>
-    <p-button
-      class="add-btn"
-      styleClass="p-button-rounded p-button-text p-button-raised"
-      icon="pi pi-user-plus"
-      (click)="onClickAddUser()"
-    ></p-button>
+    <div class="add-user">
+      <p-button
+        class="add-btn"
+        styleClass="p-button-rounded p-button-text p-button-raised"
+        icon="pi pi-user-plus"
+        (click)="onClickAddUser()"
+      ></p-button>
+    </div>
   </div>
 
-  <p-dropdown
-    (onChange)="usersShowedUpdate(userXPage)"
-    [options]="numberOfUsers"
-    [(ngModel)]="userXPage"
-  ></p-dropdown>
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="elementDisplayed"
+    [rows]="resultPerPage"
+    [totalRecords]="3000"
+    [rowsPerPageOptions]="[10, 20, 50, 100]"
+  ></p-paginator>
 
   <app-add-user
-    (prova)="onClickAddUser()"
+    (closeForm)="onClickAddUser()"
     (newUserTest)="addUser($event)"
-    [hidden]="test2"
+    [hidden]="addNewUser"
   ></app-add-user>
 
-  <!-- TODO: INSERTIRE SOPRA DENTRO IL CONTAINER SOTTO -->
+  <p-messages
+    [(value)]="message"
+    [enableService]="false"
+    [closable]="true"
+  ></p-messages>
 
   <div class="users-container">
     <ng-container *ngFor="let user of users">
@@ -38,9 +46,7 @@
             {{ user.id }}</span
           >
           <div class="user-info">
-            <h2 [ngStyle]="{ 'font-size': '20px' }">
-              <i class="pi pi-user"></i>{{ user.name }}
-            </h2>
+            <h2><i class="pi pi-user"></i>{{ user.name }}</h2>
             <p><i class="pi pi-envelope"></i>{{ user.email }}</p>
           </div>
         </div>
@@ -62,14 +68,3 @@
     </ng-container>
   </div>
 </div>
-
-<!--
-  [ngStyle]="{
-        margin: '3% 0 3% 15%',
-        padding: '2%',
-        border: '1px solid white',
-        'max-width': '40%',
-        position: 'relative'
-      }"
-     -->
-<!-- TODO: INSERIRE PAGINAZIONE + POSSIBILITà DI SCEGLIERE QUANTI USER MOSTRARE --VEDERE PROGETTO "STORE"  -->

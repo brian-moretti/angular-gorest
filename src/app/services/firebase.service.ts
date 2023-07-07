@@ -1,72 +1,72 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  Profile,
-  Account,
-  UsersGoRest,
-  UsersPosts,
-} from '../models/usersgoRest';
-import { Observable, catchError } from 'rxjs';
+import { Account } from '../models/usersgoRest';
+import { AuthService } from '../auth/auth.service';
+import { catchError, throwError } from 'rxjs';
+import { ErrorsService } from './errors.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-  constructor(private http: HttpClient) {}
-
-  //firebaseUrl: string = 'https://s2i-nttdata-default-rtdb.europe-west1.firebasedatabase.app/';
-
-  /* newUser(body: {}) {
-    return this.http.post(`${this.firebaseUrl}users.json`, body);
-  }
-
-  getUser() {
-    return this.http.get(this.firebaseUrl);
-  } */
-
-  //! Firebase
+  constructor(
+    private http: HttpClient,
+    private guard: AuthService,
+    private handleError: ErrorsService,
+    private router: Router
+  ) {}
 
   APIKeyFirebase = 'AIzaSyBqezR5xu8V631clNX5xjEbhL3PhZePUYY';
   firebaseSignupRESTAPI = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.APIKeyFirebase}`;
   firebaseLoginRESTAPI = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.APIKeyFirebase}`;
 
   signupNewUser(user: string, email: string, password: string, gender: string) {
-    return this.http.post(this.firebaseSignupRESTAPI, {
-      user: user,
-      email: email,
-      password: password,
-      gender: gender,
-      returnSecureToken: true,
-    });
+    return this.http
+      .post(this.firebaseSignupRESTAPI, {
+        user: user,
+        email: email,
+        password: password,
+        gender: gender,
+        returnSecureToken: true,
+      })
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
-  account: Account | undefined; // TODO FIX
+  account!: Account | null;
 
   createUserStorage(
+    name: string,
     email: string,
     id: string,
     token: string,
     expDate: Date,
-    apiKeyGoRest: string,
+    apiKeyGoRest: string
   ) {
-    this.account = new Account(email, id, token, expDate, apiKeyGoRest);
-    //? Da inserire proprietà per APIKEY GOREST
+    this.account = new Account(name, email, id, token, expDate, apiKeyGoRest);
+    localStorage.setItem('Account', JSON.stringify(this.account));
   }
 
-  loginUser(user: string, email: string, password: string) {
-    return this.http.post(this.firebaseLoginRESTAPI, {
-      user: user,
-      email: email,
-      password: password,
-      returnSecureToken: true,
-    });
-    //! Impostare catchError password/email
-    //! Logged = true
+  loginUser(email: string, password: string, user?: string) {
+    return this.http
+      .post(this.firebaseLoginRESTAPI, {
+        email: email,
+        password: password,
+        user: user,
+        returnSecureToken: true,
+      })
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   logoutUser() {
-    //! Logged = false
-    this.account = undefined; // TODO FIX
-    localStorage.removeItem('user');
+    this.guard.isLogged = false;
+    this.account = null;
+    localStorage.removeItem('Account');
+    this.router.navigate(['/home']);
+    console.log(
+      this.guard.isLogged,
+      this.account,
+      localStorage.getItem('Account')
+    );
   }
 }

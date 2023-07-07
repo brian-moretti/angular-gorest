@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Account } from 'src/app/models/usersgoRest';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
-  styleUrls: ['./sidebar-menu.component.css']
+  styleUrls: ['./sidebar-menu.component.css'],
 })
-export class SidebarMenuComponent {
+export class SidebarMenuComponent implements OnInit {
+  account!: Account;
+  now = new Date
 
+  ngOnInit(): void {
+    this.account = JSON.parse(localStorage.getItem('Account')!);
+  }
+
+  hideMenu: boolean = false;
+
+  showMenu() {
+    this.hideMenu = !this.hideMenu;
+  }
 }

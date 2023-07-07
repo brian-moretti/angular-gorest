@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { FirebaseService } from './services/firebase.service';
-import { JsonPipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
+import { GorestService } from './services/gorest.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +12,32 @@ import { JsonPipe } from '@angular/common';
 export class AppComponent implements OnInit {
   constructor(private firebase: FirebaseService) {}
 
+  messages!: Message[];
+
   ngOnInit(): void {
-    if(localStorage.getItem('user')) {
-      const currentUser = "";
-      /*this.firebase.createUser(
-        currentUser.email,
-        currentUser.id,
-        currentUser._token,
-        currentUser._expDate
-      );*/
-    }
+    this.checkSession();
+  }
+
+  checkSession(): void {
+    let now = new Date();
+    let expDateSession: Date = new Date(
+      JSON.parse(localStorage.getItem('Account')!)._expDate
+    );
+    setTimeout(() => {
+      console.log(now > expDateSession);
+      if (now > expDateSession) {
+        this.messages = [
+          {
+            severity: 'warn',
+            summary: 'Warning',
+            detail: 'Your session has expired. Please log again',
+          },
+        ];
+        this.firebase.logoutUser();
+      } else {
+        console.log(now, expDateSession);
+      }
+      this.checkSession();
+    }, 1000);
   }
 }

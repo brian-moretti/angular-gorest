@@ -4,13 +4,10 @@ form {
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 15px;
-  max-width: 85%;
-  margin: 3% 10%;
+  max-width: 75%;
+  margin: 3% auto;
   border-radius: 8px;
   padding: 5px 10px;
-  /*   border: 1px solid var(--color-brown);
-  box-shadow: 0.5px 0.5px 1px 0 var(--color-brown);
- */
 }
 
 textarea {
@@ -30,5 +27,32 @@ textarea {
 
   .p-float-label.textarea {
     display: flex;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  form{
+    margin: 8% auto;
+    max-width: 85%;
+  }
+
+  .element-container {
+    width: 100%;
+  }
+  :host ::ng-deep {
+    /*Campo testuale*/
+    .p-inputtext {
+      width: 100%;
+    }
+    /*Spazio elementeo*/
+    .p-float-label {
+      width: 100%;
+    }
+
+    .p-button {
+      width: 100%;
+    }
   }
 }

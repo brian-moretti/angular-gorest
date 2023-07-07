@@ -4,10 +4,15 @@ import { GorestService } from 'src/app/services/gorest.service';
 import {
   Profile,
   UsersComments,
+  UsersGoRest,
   UsersPosts,
   UsersTodos,
 } from 'src/app/models/usersgoRest';
 import { from } from 'rxjs';
+import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorsService } from 'src/app/services/errors.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-user-details',
@@ -15,10 +20,15 @@ import { from } from 'rxjs';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private gorest: GorestService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private gorest: GorestService,
+    private location: Location,
+    private handleError: ErrorsService
+  ) {}
 
   //account: Account | undefined;
-  profile: Profile = {
+  profile: UsersGoRest = {
     name: '',
     email: '',
     gender: '',
@@ -29,39 +39,57 @@ export class UserDetailsComponent implements OnInit {
   comments: UsersComments[] = [];
   todos: UsersTodos[] = [];
   userRouteId = Number(this.route.snapshot.paramMap.get('id'));
+  errorMessage: string = '';
+  message!: Message[];
 
   ngOnInit(): void {
     this.getUserDetails();
   }
 
-  /*
-  ? array.some
-  */
+  //? array.some
 
   postComments(postID: number) {
     return this.comments.filter((comment) => comment.post_id == postID);
   }
 
   getUserDetails() {
-    this.gorest.getUserDetails(this.userRouteId).subscribe((data) => {
-      this.profile = data;
+    this.errorMessage = '';
+
+    this.gorest.getUserDetails(this.userRouteId).subscribe({
+      next: (data) => {
+        this.profile = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
     });
 
-    this.gorest.getUserPosts(this.userRouteId).subscribe((data) => {
-      this.posts = data;
+    this.gorest.getUserPosts(this.userRouteId).subscribe({
+      next: (data) => {
+        this.posts = data;
 
-      from(this.posts).subscribe(
-        (post) =>
-          this.gorest.getUserComments(post.id).subscribe((data) => {
-            data.map((comment) => this.comments.push(comment));
-          })
+        from(this.posts).subscribe(
+          (post) =>
+            this.gorest.getUserComments(post.id).subscribe((data) => {
+              data.map((comment) => this.comments.push(comment));
+            })
 
-        /*
+          /*
       ? from -> observable da array/iterabile/observable
       ? of -> observable da singoli elementi/argomenti
       * [Nel caso sopra of(this.posts) separa ciascun elemento dell'array e lo tratta come singolo array su cui applicare metodi]
       */
-      );
+        );
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
     });
 
     this.gorest.getUserTodos(this.userRouteId).subscribe((data) => {
@@ -71,29 +99,53 @@ export class UserDetailsComponent implements OnInit {
 
   addComment(postId: number, comment: UsersComments) {
     comment.post_id = postId;
+    this.errorMessage = '';
 
-    this.gorest.addUserComments(postId, comment).subscribe((data) => {
-      this.comments.splice(0, 0, data);
-      /*
+    this.gorest.addUserComments(postId, comment).subscribe({
+      next: (data) => {
+        this.comments.splice(0, 0, data);
+        /*
       ? unshift() -> meno performante con array lunghi
       ? richiamare http gorest penso sia spreco di risorse
       */
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
     });
   }
 
   addUserPost(post: UsersPosts) {
     post.user_id = this.userRouteId;
-    this.gorest.addUserPost(this.userRouteId, post).subscribe((data) => {
-      console.log(data);
-      this.posts.splice(0, 0, data);
+    this.errorMessage = '';
+
+    this.gorest.addUserPost(this.userRouteId, post).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.posts.splice(0, 0, data);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
     });
     this.hidden = !this.hidden;
-
   }
+
+  //! SE 0 POST DOPO CHE LO CREI RIMANE IL FORM PERCHE' E' CAMBIATO VALORE DI HIDDEN
 
   hidden: boolean = true;
 
   showNewPostForm() {
     this.hidden = !this.hidden;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

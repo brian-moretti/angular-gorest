@@ -1,21 +1,32 @@
-<menu class="container-menu">
+<p-button icon="pi pi-arrow-right" (onClick)="showMenu()"></p-button>
+<menu class="container-menu" [ngClass]="hideMenu ? 'showMenu' : null">
   <h1 class="title"><a routerLink="/dashboard">GoRest a Post</a></h1>
 
   <div class="buttons">
-  <p-button
-  routerLink="/dashboard"
-    label="Dashboard"
-    icon="pi pi-home"
-    iconPos="left"
-    styleClass="p-button-link"
-  ></p-button>
-  <p-button
-  routerLink="/posts"
-    label="All posts"
-    icon="pi pi-book"
-    iconPos="left"
-    styleClass="p-button-link"
-  ></p-button>
+    <p-button
+      routerLink="/dashboard"
+      label="Dashboard"
+      icon="pi pi-home"
+      iconPos="left"
+      styleClass="p-button-link"
+    ></p-button>
+    <p-button
+      routerLink="/posts"
+      label="All posts"
+      icon="pi pi-book"
+      iconPos="left"
+      styleClass="p-button-link"
+    ></p-button>
+  </div>
+  <div *ngIf="true" class="user-profile">
+<!--     {{ account.name }} {{ account.email }} Your session will expires at:
+    {{ account._expDate | date : "shortTime" }}
+ -->    <app-logout></app-logout>
   </div>
   <app-footer></app-footer>
+  <p-button
+    icon="pi pi-times"
+    styleClass="p-button-rounded p-button-text"
+    (onClick)="showMenu()"
+  ></p-button>
 </menu>

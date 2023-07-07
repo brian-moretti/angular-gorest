@@ -1,0 +1,10 @@
+@media only screen and (max-width: 1124px){
+  :host ::ng-deep {
+    .p-inputtext{
+      width: 100%;
+    }
+    .p-dropdown{
+      width: 100%;
+    }
+  }
+}

@@ -18,10 +18,11 @@ export type User = {
 //! classe x account firebase login/signup
 export class Account {
   constructor(
+    public name: string,
     public email: string,
     public id: string,
     private _token: string,
-    private _expDate: Date,
+    public _expDate: Date,
     public apiKeyGoRest: string
   ) /*     public refreshToken: string,
     public username: string

@@ -1,9 +1,13 @@
 <div class="signup">
+  <p-button icon="pi pi-arrow-left" routerLink="/home"></p-button>
   <div class="signup-container">
     <h3>First time here? Please signup to proceed to the application</h3>
 
-    <!-- TODO: Impostare Passowrd almeno 6 caratteri o altra validazione -->
-    <!-- TODO: Impostare Conferma Password? -->
+    <p-messages
+      [(value)]="message"
+      [enableService]="false"
+      [closable]="true"
+    ></p-messages>
 
     <form
       #signup="ngForm"
@@ -11,10 +15,38 @@
       class="home-form"
     >
       <label htmlFor="username">Username:</label>
-      <input pInputText id="username" ngModel name="username" required />
+      <input
+        pInputText
+        id="username"
+        #username="ngModel"
+        ngModel
+        name="username"
+        required
+        minlength="3"
+        autocomplete="off"
+        (blur)="onFieldChange()"
+      />
+      <div
+        class="error"
+        *ngIf="!username.valid && (username.touched || username.dirty)"
+      >
+        The Username is mandatory
+      </div>
+      <div class="error" *ngIf="showError && username.errors?.['minlength']">
+        Must have a minimum of
+        {{ username.errors?.['minlength'].requiredLength }} characters
+      </div>
 
       <label htmlFor="email">Your email:</label>
-      <input pInputText id="email" ngModel name="email" required />
+      <input
+        pInputText
+        id="email"
+        type="email"
+        ngModel
+        name="email"
+        autocomplete="off"
+        required
+      />
 
       <label htmlFor="password">Choose a password:</label>
       <p-password ngModel name="password" [toggleMask]="true"></p-password>
@@ -41,7 +73,11 @@
           <label for="female">Female</label>
         </div>
       </p-fieldset>
-      <p-button type="submit" label="Signup"></p-button>
+      <p-button
+        type="submit"
+        label="Signup"
+        [disabled]="!signup.valid"
+      ></p-button>
     </form>
 
     <div class="registration">

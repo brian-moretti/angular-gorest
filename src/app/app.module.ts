@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgOptimizedImage } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,12 +20,13 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
-import { PaginatorModule } from 'primeng/paginator';
 import { DropdownModule } from 'primeng/dropdown';
 import { SidebarModule } from 'primeng/sidebar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
 import { FieldsetModule } from 'primeng/fieldset';
+import { PaginatorModule } from 'primeng/paginator';
+import { MessagesModule } from 'primeng/messages';
 
 import { HomeComponent } from './log/home/home.component';
 import { LoginComponent } from './log/login/login.component';
@@ -34,7 +36,6 @@ import { SignupComponent } from './log/signup/signup.component';
 import { DashboardComponent } from './users/components/dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './users/components/dashboard-header/dashboard-header.component';
 import { SidebarMenuComponent } from './users/components/sidebar-menu/sidebar-menu.component';
-import { FilterComponent } from './users/components/filter/filter.component';
 import { UserDetailsComponent } from './users/components/user-details/user-details.component';
 import { AddUserComponent } from './users/components/add-user/add-user.component';
 import { AddPostComponent } from './users/components/add-post/add-post.component';
@@ -53,7 +54,6 @@ import { FooterComponent } from './users/components/footer/footer.component';
     DashboardComponent,
     DashboardHeaderComponent,
     SidebarMenuComponent,
-    FilterComponent,
     UserDetailsComponent,
     AddUserComponent,
     AddPostComponent,
@@ -65,19 +65,21 @@ import { FooterComponent } from './users/components/footer/footer.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgOptimizedImage,
     FormsModule,
     PasswordModule,
     FieldsetModule,
     ReactiveFormsModule,
     InputTextModule,
-    PaginatorModule,
     InputTextareaModule,
     SidebarModule,
+    MessagesModule,
     DividerModule,
     DropdownModule,
     CardModule,
     TabViewModule,
     RadioButtonModule,
+    PaginatorModule,
     ButtonModule,
     SelectButtonModule,
     HttpClientModule,

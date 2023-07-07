@@ -6,11 +6,6 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { UserPostsComponent } from './components/user-posts/user-posts.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
   { path: 'user-details/:id', component: UserDetailsComponent },
   { path: 'posts', component: UserPostsComponent },
 ];

@@ -59,3 +59,9 @@ form{
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  form{
+    padding: 15% 10%;
+  }
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import {
   Profile,
   UsersComments,
@@ -7,17 +7,23 @@ import {
   UsersPosts,
   UsersTodos,
 } from '../models/usersgoRest';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { ErrorsService } from './errors.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GorestService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private handleError: ErrorsService) {}
 
   //! GoRest API
 
-  gorestAPI = '60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7';
+  gorestAPI =
+    '60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
   gorestUsers = 'https://gorest.co.in/public/v2/users';
   gorestPosts = 'https://gorest.co.in/public/v2/posts';
   gorestComments = 'https://gorest.co.in/public/v2/comments';
@@ -35,100 +41,136 @@ export class GorestService {
       'Bearer 60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a',
   });
 
-  //! Da cancellare
-  apiUrl =
-    'https://gorest.co.in/public/v2/users?access-token=60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a&per_page=10&page=5';
-
-  profile: Profile = { name: '', email: '', gender: '', status: '' };
-
-  createUser() {
-    /*
+  /*
       ? header = gorest -H
       ? body = name: user/email/gender/status
       ? return this.http.post(urlGorest, header, body)
       ! creazione classe con queste proprietà
       ! Api key goRest in localstorage utente creato
       */
-  }
 
-  users: Array<UsersGoRest> = [];
-
-  getUsers(dataXPage?: number): Observable<UsersGoRest[]> {
-    return this.http.get<UsersGoRest[]>(
-      this.gorestUsers +
-        this.tokenApi +
-        `${dataXPage ? '&per_page=' + dataXPage : ''}`
-    );
+  getUsers(
+    currentPage?: number,
+    resultPerPage?: number
+  ): Observable<UsersGoRest[]> {
+    //? TEST
+    /*
+    const header = new HttpHeaders({
+      'X-Pagination-Total': 2725, //max result
+      'X-Pagination-Pages': 273, //max page
+      'X-Pagination-Page': currentPage!, // pag corrente
+      'X-Pagination-Limit': resultPerPage!, //risultati x page
+    });
+    */
+    return this.http
+      .get<UsersGoRest[]>(
+        this.gorestUsers +
+          this.tokenApi +
+          `${currentPage ? '&page=' + currentPage : ''}` +
+          `${resultPerPage ? '&per_page=' + resultPerPage : ''}`
+        //{ headers: header }
+      )
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   addNewUser(body: {}): Observable<UsersGoRest> {
-    return this.http.post<UsersGoRest>(this.gorestUsers + this.tokenApi, body, {
-      headers: this.headers,
-    });
+    return this.http
+      .post<UsersGoRest>(this.gorestUsers + this.tokenApi, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   removeUser(id: number) {
-    return this.http.delete(`${this.gorestUsers}/${id}`, {
-      headers: this.headers,
-    });
+    return this.http
+      .delete(`${this.gorestUsers}/${id}`, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   getUserDetails(id: number): Observable<UsersGoRest> {
-    return this.http.get<UsersGoRest>(
-      `${this.gorestUsers}/${id}${this.tokenApi}`
-    );
+    return this.http
+      .get<UsersGoRest>(`${this.gorestUsers}/${id}${this.tokenApi}`)
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   getUserPosts(id: number): Observable<UsersPosts[]> {
-    return this.http.get<UsersPosts[]>(
-      `${this.gorestUsers}/${id}/posts${this.tokenApi}`
-    );
+    return this.http
+      .get<UsersPosts[]>(`${this.gorestUsers}/${id}/posts${this.tokenApi}`)
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   addUserPost(user_id: number, post: UsersPosts): Observable<UsersPosts> {
-    return this.http.post<UsersPosts>(
-      `${this.gorestUsers}/${user_id}/posts${this.tokenApi}`,
-      post,
-      { headers: this.headers }
-    );
+    return this.http
+      .post<UsersPosts>(
+        `${this.gorestUsers}/${user_id}/posts${this.tokenApi}`,
+        post,
+        { headers: this.headers }
+      )
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   //! TESTARE REMOVE POST/COMMENT/TODO
   removePost(post_id: number) {
-    return this.http.delete(`${this.gorestPosts}/${post_id}`, {
-      headers: this.headers,
-    });
+    return this.http
+      .delete(`${this.gorestPosts}/${post_id}`, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
-  getAllPosts(dataXPage?: number): Observable<UsersPosts[]> {
+  /** TEST */
+  //!FIX
+  getAllPosts(
+    currentPage?: number,
+    resultPerPage?: number
+  ): Observable<UsersPosts[]> {
+    return this.http
+      .get<UsersPosts[]>(
+        this.gorestPosts +
+          this.tokenApi +
+          `${currentPage ? '&page=' + currentPage : ''}` +
+          `${resultPerPage ? '&per_page=' + resultPerPage : ''}`
+      )
+      .pipe(catchError(this.handleError.handleHttpErrors));
+  }
+
+  /*   getAllPosts(dataXPage?: number): Observable<UsersPosts[]> {
     return this.http.get<UsersPosts[]>(
       this.gorestPosts +
         this.tokenApi +
         `${dataXPage ? '&per_page=' + dataXPage : ''}`
     );
-  }
+  } */
 
   getUserComments(post_id: number): Observable<UsersComments[]> {
-    return this.http.get<UsersComments[]>(
-      `${this.gorestPosts}/${post_id}/comments${this.tokenApi}`
-    );
+    return this.http
+      .get<UsersComments[]>(
+        `${this.gorestPosts}/${post_id}/comments${this.tokenApi}`
+      )
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   addUserComments(
     post_id: number,
     comment: UsersComments
   ): Observable<UsersComments> {
-    return this.http.post<UsersComments>(
-      `${this.gorestPosts}/${post_id}/comments${this.tokenApi}`,
-      comment,
-      { headers: this.headers }
-    );
+    return this.http
+      .post<UsersComments>(
+        `${this.gorestPosts}/${post_id}/comments${this.tokenApi}`,
+        comment,
+        { headers: this.headers }
+      )
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
-  removeComment(comment_id: number){
-    return this.http.delete(`${this.gorestComments}/${comment_id}`, {
-      headers: this.headers,
-    });
+  removeComment(comment_id: number) {
+    return this.http
+      .delete(`${this.gorestComments}/${comment_id}`, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
   getUserTodos(id: number): Observable<UsersTodos[]> {

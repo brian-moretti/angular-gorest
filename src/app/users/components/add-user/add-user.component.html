@@ -1,19 +1,42 @@
 <main class="add-user">
   <form #newUserForm="ngForm" (ngSubmit)="createUser(newUserForm)">
-    <button class="close" type="button" (click)="close()">
+    <button class="close" type="button" (click)="close(newUserForm)">
       <i class="pi pi-times-circle"></i>
     </button>
     <span class="p-float-label">
       <input
         pInputText
+        #username="ngModel"
+        type="text"
         id="username"
         [(ngModel)]="newUser.name"
         name="username"
+        (blur)="onFieldChange()"
+        autocomplete="off"
+        minlength="3"
+        required
       />
       <label htmlFor="username">Username</label>
     </span>
+    <div
+      class="error"
+      *ngIf="!username.valid && (username.touched || username.dirty)"
+    >
+      The Username is mandatory
+    </div>
+    <div class="error" *ngIf="showError && username.errors?.['minlength']">
+      Must have a minimum of
+      {{ username.errors?.['minlength'].requiredLength }} characters
+    </div>
     <span class="p-float-label">
-      <input pInputText id="email" [(ngModel)]="newUser.email" name="email" />
+      <input
+        pInputText
+        id="email"
+        [(ngModel)]="newUser.email"
+        name="email"
+        type="email"
+        required
+      />
       <label htmlFor="email">Email</label>
     </span>
     <div class="gender">
@@ -23,6 +46,7 @@
           value="Male"
           [(ngModel)]="newUser.gender"
           inputId="male"
+          required
         ></p-radioButton>
         <label for="male">Male</label>
       </div>
@@ -33,6 +57,7 @@
           value="Female"
           [(ngModel)]="newUser.gender"
           inputId="female"
+          required
         ></p-radioButton>
         <label for="female">Female</label>
       </div>
@@ -44,12 +69,14 @@
       optionLabel="label"
       optionValue="value"
       name="status"
+      required
     ></p-selectButton>
 
     <p-button
       type="submit"
       label="CREATE USER"
       class="p-button-success"
+      [disabled]="!newUserForm.valid"
     ></p-button>
   </form>
 </main>

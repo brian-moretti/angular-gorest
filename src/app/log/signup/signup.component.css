@@ -1,28 +1,6 @@
 .signup {
-  width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
   padding: 3em 0;
-  height: 100vh;
-  min-height: 100vh;
 }
-
-.signup-container {
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 25px;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-}
-
-.signup-container h3{
-  color: var(--color-brown);
-  border-bottom: 1.5px solid var(--color-brown)
-}
-
 
 :host ::ng-deep {
   .p-password {
@@ -55,9 +33,24 @@
     margin-top: 16px;
   }
 
+  .p-button-icon-only {
+    position: absolute;
+    top: 2.5%;
+    left: 5%;
+    width: 3rem;
+  }
 }
 
+@media only screen and (max-width: 800px) {
+  .home-form {
+    width: 100%;
+  }
 
-@media only screen and (max-width: 600px) {
-  
+  .signup-container h3 {
+    text-align: center;
+  }
+
+  .registration {
+    flex-direction: column;
+  }
 }

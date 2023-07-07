@@ -1,61 +1,9 @@
-/* .data-container {
-  border: 1px solid red;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: calc(100% - 200px);
-  margin-left: 200px
-}
-
-.header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-}
-
-.user {
-  position: relative;
-  border-radius: 10px;
-  border: 1px solid white;
-  background-color: var(--color2);
-  margin: 1.5%;
-  padding: 1% 1.5% 3%;
-  flex: 0 0 30%;
-  width: 100%;
-  line-height: 25px;
-  cursor: pointer;
-}
-
-.pi {
-  margin-right: 10px;
-  font-size: 15px;
-}
-
-.user-name {
-}
-
-@keyframes lighter {
-  0% {
-    filter: brightness(100%);
-  }
-  100% {
-    filter: brightness(150%);
-  }
-}
- */
-
-.main-container {
-  width: calc(100% - 200px);
-  margin-left: 200px;
-  padding: 25px 50px;
-}
-
 .header-dashboard {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 /*RIQUADRO PULSANTE ADD-USER*/
@@ -74,7 +22,7 @@
   background-color: var(--color-dust-white);
   color: var(--color-brown);
   display: flex;
-  flex-basis: calc(33% - 14px);
+  flex-basis: calc(50% - 14px);
   justify-content: space-between;
   align-items: center;
   box-shadow: 3px 3px 3px 1px var(--color-brown);
@@ -107,6 +55,10 @@
   justify-content: center;
   word-wrap: break-word;
   word-break: break-all;
+}
+
+.user-info h2{
+  font-size: 20px;
 }
 
 .buttons {
@@ -145,5 +97,58 @@
 
   .header-dashboard .add-btn .p-button .pi {
     font-size: 1.2rem;
+  }
+
+  .p-paginator {
+    width: fit-content;
+    margin: 2% auto;
+  }
+}
+
+@media only screen and (max-width: 1124px) {
+
+  .header-dashboard {
+    justify-content: center;
+  }
+
+  app-dashboard-header{
+    margin: auto;
+  }
+
+  :host ::ng-deep {
+    .header-dashboard p-button.p-element.add-btn {
+      text-align: end;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header-dashboard {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+.user-info h2{
+  font-size: 18px;
+}
+
+.user-info p{
+  font-weight: var(--font-light);
+  font-size: 14px;
+}
+
+  :host ::ng-deep {
+    .p-paginator {
+      margin: 2% auto 6%;
+    }
+    .p-paginator .p-paginator-element {
+      min-width: 1rem;
+    }
+    .p-paginator .p-paginator-pages > * {
+      min-width: 2.5rem;
+    }
+  }
+  .user {
+    flex: auto;
   }
 }

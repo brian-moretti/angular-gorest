@@ -1,61 +1,93 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Message } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { UsersGoRest } from 'src/app/models/usersgoRest';
+import { ErrorsService } from 'src/app/services/errors.service';
 import { GorestService } from 'src/app/services/gorest.service';
 
-//? DA SPOSTARE
-
-//! SISTEMARE FATTO CHE QUANDO DA DASHBOARD VADO SU DETTAGLI O ALTRO PREMENDO "BACK" NON RITORNA MA SERVE 2 VOLTE
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private gorest: GorestService, private router: Router) {}
+  constructor(
+    private gorest: GorestService,
+    private handleError: ErrorsService
+  ) {}
+
+  //? PER FARE UNSUBSCRIBE
+  test: Subscription = new Subscription();
 
   users: UsersGoRest[] = [];
   filteredData: Array<UsersGoRest> = [];
-  test: Subscription = new Subscription();
-  test2: boolean = true; //! PULSANTE DI AGGIUNTA NUOVO UTENTE
+  addNewUser: boolean = true;
 
-  numberOfUsers: Array<number> = [10, 20, 50, 100];
-  userXPage: number = 10;
+  errorMessage: string = '';
+  message!: Message[];
 
   ngOnInit(): void {
     this.getUsers();
-
-    /*     this.test = this.gorest.getUsers().subscribe((data) => {
-      console.log(data);
-      this.users = data;
-      this.filteredData = data;
-      console.log(this.users);
-    });
- */
-    //this.createUser();
-    //! Creare interfaccia per ciascun oggetto ricevuto da chiamata http
   }
 
   getUsers() {
-    this.gorest.getUsers(this.userXPage).subscribe((data) => {
-      this.users = data;
-      this.filteredData = data;
+    this.gorest.getUsers(this.currentPage, this.resultPerPage).subscribe({
+      next: (data) => {
+        this.users = data;
+        this.filteredData = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
     });
   }
 
+  elementDisplayed: number = 0;
+  //first sarebbe il numero complessivo di elementi
+  currentPage: number = 0;
+  resultPerPage: number = 10;
+  onPageChange(event: any) {
+    this.currentPage = event.page + 1;
+    this.resultPerPage = event.rows;
+    this.elementDisplayed = event.first;
+    console.log(event);
+    console.log(this.currentPage);
+    console.log(this.resultPerPage);
+
+    this.getUsers();
+  }
+
   addUser(newUser: UsersGoRest) {
-    this.gorest.addNewUser(newUser).subscribe((data) => {
-      console.log(data);
-      this.getUsers();
+    this.gorest.addNewUser(newUser).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.getUsers();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
     });
   }
 
   removeUser(id: number) {
-    this.gorest.removeUser(id).subscribe(() =>
-      //this.users = this.users.filter((user) => user.id !== id)
-      this.getUsers()
-    );
+    this.gorest.removeUser(id).subscribe({
+      next: () =>
+        //this.users = this.users.filter((user) => user.id !== id)
+        this.getUsers(),
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          { severity: 'warn', summary: 'Warning', detail: this.errorMessage },
+        ];
+      },
+    });
     console.log(id);
   }
 
@@ -77,12 +109,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onClickAddUser() {
-    this.test2 = !this.test2;
-  }
-
-  usersShowedUpdate(newCount: number) {
-    this.userXPage = newCount;
-    this.getUsers();
-    console.log(this.userXPage);
+    this.addNewUser = !this.addNewUser;
   }
 }

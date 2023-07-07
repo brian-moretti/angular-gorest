@@ -19,3 +19,21 @@
   }
 
 }
+
+@media only screen and (max-width: 600px) {
+.filter{
+  flex-direction: column;
+  gap: 5px;
+}
+
+:host ::ng-deep {
+  .filter .p-inputtext {
+    width: 100%;
+  }
+
+  .p-selectbutton .p-button{
+    width: 50%;
+  }
+}
+
+}

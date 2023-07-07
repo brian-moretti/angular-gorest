@@ -1,11 +1,11 @@
 <form [formGroup]="newPostForm" (ngSubmit)="form(newPostForm)">
-  <div formGroupName="post">
+  <div formGroupName="post" class="element-container">
     <span class="p-float-label">
       <input pInputText id="title" formControlName="title" name="title" />
       <label htmlFor="title">Title</label>
     </span>
   </div>
-  <div formGroupName="post">
+  <div formGroupName="post" class="element-container">
     <span class="p-float-label textarea">
       <textarea
         id="float-input"
@@ -17,9 +17,11 @@
       <label for="float-input">Summary</label>
     </span>
   </div>
+  <div class="element-container">
   <p-button
     type="submit"
     label="CREATE POST"
     class="p-button-success"
   ></p-button>
+  </div>
 </form>

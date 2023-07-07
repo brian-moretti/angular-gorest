@@ -1,1 +1,11 @@
+<div
+  [ngStyle]="messages ? { display: 'block' } : { display: 'none' }"
+  class="main-container"
+>
+  <p-messages
+    [(value)]="messages"
+    [enableService]="false"
+    [closable]="true"
+  ></p-messages>
+</div>
 <router-outlet></router-outlet>
