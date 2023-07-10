@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from 'src/app/models/usersgoRest';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { Account } from 'src/app/models/firebase.model';
 
 @Component({
   selector: 'app-sidebar-menu',

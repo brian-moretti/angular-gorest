@@ -18,10 +18,11 @@
       styleClass="p-button-link"
     ></p-button>
   </div>
-  <div *ngIf="true" class="user-profile">
-<!--     {{ account.name }} {{ account.email }} Your session will expires at:
+  <div *ngIf="account" class="user-profile">
+    <h6>{{ account.name }}</h6>
+    {{ account.email }} Your session will expires at:
     {{ account._expDate | date : "shortTime" }}
- -->    <app-logout></app-logout>
+    <app-logout></app-logout>
   </div>
   <app-footer></app-footer>
   <p-button

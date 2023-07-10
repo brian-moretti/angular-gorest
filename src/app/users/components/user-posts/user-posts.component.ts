@@ -1,17 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Message } from 'primeng/api';
-import { Subscription, forkJoin, from, of } from 'rxjs';
-import { UsersComments } from 'src/app/models/usersgoRest';
-import { UsersPosts } from 'src/app/models/usersgoRest';
+import { from } from 'rxjs';
+import { UsersComments, UsersPosts } from 'src/app/models/gorest.model';
 import { ErrorsService } from 'src/app/services/errors.service';
 import { GorestService } from 'src/app/services/gorest.service';
 
-//! TEST
-interface userinfo {
-  name: string;
-  id: number;
-}
 @Component({
   selector: 'app-user-posts',
   templateUrl: './user-posts.component.html',
@@ -23,7 +17,7 @@ export class UserPostsComponent implements OnInit {
     private handleError: ErrorsService
   ) {}
 
-  userInfo: userinfo[] = [];
+  userInfo: number[] = [];
   posts: UsersPosts[] = [];
   filteredPost: UsersPosts[] = [];
   comments: UsersComments[] = [];
@@ -31,8 +25,7 @@ export class UserPostsComponent implements OnInit {
   message!: Message[];
 
   ngOnInit(): void {
-    this.getAllPosts();
-    //this.getUserPosts();
+    this.getUserPosts();
   }
 
   elementDisplayed: number = 0;
@@ -44,87 +37,15 @@ export class UserPostsComponent implements OnInit {
     this.currentPage = event.page + 1;
     this.resultPerPage = event.rows;
     this.elementDisplayed = event.first;
-    this.getAllPosts();
-    // this.getUserPosts();
+    this.getUserPosts();
   }
 
-  getAllPosts() {
-    this.userInfo = [];
-    this.posts = [];
-    this.filteredPost = [];
-    this.comments = [];
-
-    this.gorest.getUsers(this.currentPage, this.resultPerPage).subscribe({
-      next: (data) => {
-        data.map((user) => {
-          const userDetail: userinfo = {
-            name: user.name,
-            id: user.id!,
-          };
-
-          this.gorest.getUserPosts(user.id!).subscribe({
-            next: (data) => {
-              if (data.length > 0) {
-                this.userInfo.push(userDetail);
-              }
-              data.map((post) => {
-                this.posts.push(post);
-                this.filteredPost.push(post);
-                this.getPostsComments(post.id);
-              });
-            },
-            error: (error: HttpErrorResponse) => {
-              this.errorMessage = this.handleError.handleGoRestErrors(error);
-            },
-          });
-        });
-      },
-      error: (error: HttpErrorResponse) => {
-        this.errorMessage = this.handleError.handleGoRestErrors(error);
-      },
-    });
-  }
-
-  /*   getUserPosts() {
+  getUserPosts() {
     this.gorest.getAllPosts(this.currentPage, this.resultPerPage).subscribe({
       next: (data) => {
         this.userInfo = [];
-
-
-         * CODICE RELATIVO A:
-         * -PRELEVO DETTAGLI DATI UTENTE
-         * -CREO ARRAY/OBJ: INTERACCIA CON NAME+ID
-         * -INSERISCO DATI IN UN ARRAY, CHE VIENE GESTITO NEL TEMPLATE
-         ? PER OGNI UTENTE PRELEVATO CREARE SEZIONE CON I POST DI QUESTO UTENTE
-         ! PROBLEMA: FUNZIONA, MA SE L'UTENTE E' STATO CANCELLATO DA ERRORE PERCHE' I POST SONO ANCORA ATTIVI E QUINDI A SCHERMO NON COMPARE NULLA
-
-
-        // DA
-
         data.map((element) => {
-          //! 1° PAGINA SENZA POST - MOSTRARE ERRORE O ALTRO
-          this.gorest.getUserDetails(element.user_id).subscribe({
-            next: (data) => {
-              const userInfo: userinfo[] = [
-                {
-                  name: data.name,
-                  id: element.user_id,
-                },
-              ];
-              this.userInfo = userInfo;
-              console.log(this.userInfo);
-            },
-            error: (error: HttpErrorResponse) => {
-              this.errorMessage = this.handleError.handleGoRestErrors(error);
-              this.message = [
-                {
-                  severity: 'warn',
-                  summary: 'Warning',
-                  detail: this.errorMessage,
-                },
-              ];
-            },
-          });
+          this.userInfo.push(element.user_id);
         });
         this.posts = data;
         this.filteredPost = data;
@@ -144,7 +65,7 @@ export class UserPostsComponent implements OnInit {
         ];
       },
     });
-  } */
+  }
 
   getPostsComments(id: number) {
     this.gorest.getUserComments(id).subscribe({

@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GorestService } from 'src/app/services/gorest.service';
 import {
-  Profile,
   UsersComments,
   UsersGoRest,
   UsersPosts,
-  UsersTodos,
-} from 'src/app/models/usersgoRest';
+} from 'src/app/models/gorest.model';
 import { from } from 'rxjs';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -37,7 +35,6 @@ export class UserDetailsComponent implements OnInit {
 
   posts: UsersPosts[] = [];
   comments: UsersComments[] = [];
-  todos: UsersTodos[] = [];
   userRouteId = Number(this.route.snapshot.paramMap.get('id'));
   errorMessage: string = '';
   message!: Message[];
@@ -91,10 +88,6 @@ export class UserDetailsComponent implements OnInit {
         ];
       },
     });
-
-    this.gorest.getUserTodos(this.userRouteId).subscribe((data) => {
-      this.todos = data;
-    });
   }
 
   addComment(postId: number, comment: UsersComments) {
@@ -136,8 +129,6 @@ export class UserDetailsComponent implements OnInit {
     });
     this.hidden = !this.hidden;
   }
-
-  //! SE 0 POST DOPO CHE LO CREI RIMANE IL FORM PERCHE' E' CAMBIATO VALORE DI HIDDEN
 
   hidden: boolean = true;
 

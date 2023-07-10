@@ -71,13 +71,6 @@
             </ng-container>
           </ng-container>
         </p-tabPanel>
-        <p-tabPanel header="Todos">
-          <ng-container *ngIf="todos?.length; else noTodos">
-            <div *ngFor="let todo of todos; index as i">
-              <h3>{{ todo.title }} {{ i + 1 }}</h3>
-            </div>
-          </ng-container>
-        </p-tabPanel>
       </p-tabView>
     </section>
 
@@ -88,10 +81,5 @@
     <ng-template #noComment>
       <p class="nothing">For this user, 0 comments has been found</p>
     </ng-template>
-    <ng-template #noTodos>
-      <p>For this user, 0 todos has been found</p>
-    </ng-template>
   </ng-container>
-
-  <!-- TODO: FIX WITH AGGIUNTA COMPONENTI ADD-COMMENTI -->
 </main>

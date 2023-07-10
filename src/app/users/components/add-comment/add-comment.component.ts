@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Profile, UsersComments } from 'src/app/models/usersgoRest';
+import { UsersComments, UsersGoRest } from 'src/app/models/gorest.model';
 
 @Component({
   selector: 'app-add-comment',
@@ -9,7 +9,7 @@ import { Profile, UsersComments } from 'src/app/models/usersgoRest';
 })
 export class AddCommentComponent {
   @Input()
-  profile!: Profile;
+  profile!: UsersGoRest;
 
   @Output() comment = new EventEmitter<UsersComments>();
 

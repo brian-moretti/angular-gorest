@@ -9,16 +9,14 @@ import { HomeComponent } from './log/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  //{ path: 'home', component: HomeComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    //canActivate: [AuthGuard],
-    /*canActivate: [() => inject(AuthGuard).canActivate()],*/
-         loadChildren: () =>
+    canActivate: [() => inject(AuthGuard).canActivate()],
+    loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),
-
   },
+  { path: '**', component: HomeComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsersGoRest } from 'src/app/models/usersgoRest';
+import { UsersGoRest } from 'src/app/models/gorest.model';
 
 @Component({
   selector: 'app-add-user',

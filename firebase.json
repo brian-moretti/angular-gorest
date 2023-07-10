@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/s2i-nttdata-project",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

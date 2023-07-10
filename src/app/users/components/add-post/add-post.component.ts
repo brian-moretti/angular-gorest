@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersPosts } from 'src/app/models/usersgoRest';
+import { UsersPosts } from 'src/app/models/gorest.model';
 import { GorestService } from 'src/app/services/gorest.service';
 
 @Component({
@@ -32,17 +32,5 @@ export class AddPostComponent implements OnInit {
       body: form.value.post.body,
     });
     form.reset();
-    /*this.addUserPost(this.post.user_id!, {
-      user_id: this.post.user_id!,
-      title: form.value.post.title,
-      body: form.value.post.body,
-    });*/
   }
-
-/*   addUserPost(user_id: number, post: UsersPosts) {
-    this.gorest
-      .addUserPost(user_id, post)
-      .subscribe((data) => console.log(data));
-    //! id prelevato dal select dei id post trovati dall'array
-  } */
 }

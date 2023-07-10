@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Message } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { UsersGoRest } from 'src/app/models/usersgoRest';
+import { UsersGoRest } from 'src/app/models/gorest.model';
 import { ErrorsService } from 'src/app/services/errors.service';
 import { GorestService } from 'src/app/services/gorest.service';
 

@@ -1,7 +1,5 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from './services/firebase.service';
-import { DatePipe, JsonPipe } from '@angular/common';
-import { GorestService } from './services/gorest.service';
 import { Message } from 'primeng/api';
 
 @Component({
@@ -34,10 +32,8 @@ export class AppComponent implements OnInit {
           },
         ];
         this.firebase.logoutUser();
-      } else {
-        console.log(now, expDateSession);
       }
-      this.checkSession();
+      return this.checkSession(); //TESTARE RETURN
     }, 1000);
   }
 }

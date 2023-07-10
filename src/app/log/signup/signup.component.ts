@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Message } from 'primeng/api';
-import { Account } from 'src/app/models/usersgoRest';
+import { Account } from 'src/app/models/firebase.model';
 import { ErrorsService } from 'src/app/services/errors.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
@@ -46,12 +46,9 @@ export class SignupComponent {
         ];
       },
     });
-    //? RITORNA OGGETTO CON DATI DI ACCESSO FIREBASE
   }
 
   onFieldChange() {
     this.showError = true;
   }
 }
-
-//! Creazione UTENTE ACCOUNT per mostrare dati a schermo + utilizzo per commenti

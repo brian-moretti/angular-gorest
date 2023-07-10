@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import {
-  Profile,
-  UsersComments,
-  UsersGoRest,
-  UsersPosts,
-  UsersTodos,
-} from '../models/usersgoRest';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { UsersComments, UsersGoRest, UsersPosts } from '../models/gorest.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErrorsService } from './errors.service';
 
 @Injectable({
@@ -20,7 +10,7 @@ import { ErrorsService } from './errors.service';
 export class GorestService {
   constructor(private http: HttpClient, private handleError: ErrorsService) {}
 
-  //! GoRest API
+  //* GoRest API
 
   gorestAPI =
     '60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
@@ -31,8 +21,6 @@ export class GorestService {
 
   tokenApi =
     '?access-token=60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
-  dataXPage = '&per_page=100'; //TODO - RENDERE DINAMICO LE PAGE
-  nPage = '&page=5'; // TODO RENDERE DINAMICO IL N. PAGE
 
   headers = new HttpHeaders({
     Accept: 'application/json',
@@ -41,13 +29,7 @@ export class GorestService {
       'Bearer 60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a',
   });
 
-  /*
-      ? header = gorest -H
-      ? body = name: user/email/gender/status
-      ? return this.http.post(urlGorest, header, body)
-      ! creazione classe con queste proprietà
-      ! Api key goRest in localstorage utente creato
-      */
+  //* GoRest Users
 
   getUsers(
     currentPage?: number,
@@ -95,6 +77,22 @@ export class GorestService {
       .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
+  //* GoRest Posts
+
+  getAllPosts(
+    currentPage?: number,
+    resultPerPage?: number
+  ): Observable<UsersPosts[]> {
+    return this.http
+      .get<UsersPosts[]>(
+        this.gorestPosts +
+          this.tokenApi +
+          `${currentPage ? '&page=' + currentPage : ''}` +
+          `${resultPerPage ? '&per_page=' + resultPerPage : ''}`
+      )
+      .pipe(catchError(this.handleError.handleHttpErrors));
+  }
+
   getUserPosts(id: number): Observable<UsersPosts[]> {
     return this.http
       .get<UsersPosts[]>(`${this.gorestUsers}/${id}/posts${this.tokenApi}`)
@@ -111,7 +109,6 @@ export class GorestService {
       .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
-  //! TESTARE REMOVE POST/COMMENT/TODO
   removePost(post_id: number) {
     return this.http
       .delete(`${this.gorestPosts}/${post_id}`, {
@@ -120,29 +117,7 @@ export class GorestService {
       .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
-  /** TEST */
-  //!FIX
-  getAllPosts(
-    currentPage?: number,
-    resultPerPage?: number
-  ): Observable<UsersPosts[]> {
-    return this.http
-      .get<UsersPosts[]>(
-        this.gorestPosts +
-          this.tokenApi +
-          `${currentPage ? '&page=' + currentPage : ''}` +
-          `${resultPerPage ? '&per_page=' + resultPerPage : ''}`
-      )
-      .pipe(catchError(this.handleError.handleHttpErrors));
-  }
-
-  /*   getAllPosts(dataXPage?: number): Observable<UsersPosts[]> {
-    return this.http.get<UsersPosts[]>(
-      this.gorestPosts +
-        this.tokenApi +
-        `${dataXPage ? '&per_page=' + dataXPage : ''}`
-    );
-  } */
+  //* GoRest Comment
 
   getUserComments(post_id: number): Observable<UsersComments[]> {
     return this.http
@@ -171,11 +146,5 @@ export class GorestService {
         headers: this.headers,
       })
       .pipe(catchError(this.handleError.handleHttpErrors));
-  }
-
-  getUserTodos(id: number): Observable<UsersTodos[]> {
-    return this.http.get<UsersTodos[]>(
-      `${this.gorestUsers}/${id}/todos${this.tokenApi}`
-    );
   }
 }

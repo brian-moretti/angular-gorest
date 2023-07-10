@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { UsersPosts } from 'src/app/models/usersgoRest';
 
 @Component({
   selector: 'app-filter-posts',
