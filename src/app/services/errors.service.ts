@@ -9,24 +9,27 @@ export class ErrorsService {
   constructor() {}
 
   handleHttpErrors(error: HttpErrorResponse) {
-    console.error(error);
     return throwError(() => error);
   }
 
   handleSignupErrors(error: HttpErrorResponse): string {
-    console.error(error);
     if (
       error.status === 400 &&
       error.error?.error?.message === 'INVALID_EMAIL'
     ) {
       return 'The email is not valid. Please try again';
+    } else if (
+      error.status === 400 &&
+      error.error?.error?.message ===
+        'WEAK_PASSWORD : Password should be at least 6 characters'
+    ) {
+      return 'The password should be at least 6 characters';
     } else {
       return 'Something went wrong. Please reload and try again';
     }
   }
 
   handleLoginErrors(error: HttpErrorResponse): string {
-    console.error(error);
     if (
       error.status === 400 &&
       error.error?.error?.message === 'EMAIL_NOT_FOUND'
@@ -43,7 +46,6 @@ export class ErrorsService {
   }
 
   goRestAPIErrors(error: HttpErrorResponse): string {
-    console.error(error);
     switch (error.status) {
       case 400:
         return 'A bad request has been mada providing wrong data when requested';

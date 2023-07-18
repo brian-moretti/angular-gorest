@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgOptimizedImage } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { UsersModule } from './users/users.module';
-import { LogModule } from './log/log.module';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,10 +24,10 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { PaginatorModule } from 'primeng/paginator';
 import { MessagesModule } from 'primeng/messages';
 
-import { HomeComponent } from './log/home/home.component';
-import { LoginComponent } from './log/login/login.component';
-import { LogoutComponent } from './log/logout/logout.component';
-import { SignupComponent } from './log/signup/signup.component';
+import { HomeComponent } from './auth/home/home.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 import { DashboardComponent } from './users/components/dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './users/components/dashboard-header/dashboard-header.component';
@@ -65,7 +61,6 @@ import { FooterComponent } from './users/components/footer/footer.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgOptimizedImage,
     FormsModule,
     PasswordModule,
     FieldsetModule,
@@ -83,8 +78,6 @@ import { FooterComponent } from './users/components/footer/footer.component';
     ButtonModule,
     SelectButtonModule,
     HttpClientModule,
-    UsersModule,
-    LogModule,
     AppRoutingModule,
   ],
   providers: [],

@@ -16,7 +16,7 @@ import { GorestService } from 'src/app/services/gorest.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
-  message!: Message[]
+  message!: Message[];
 
   constructor(
     private router: Router,
@@ -39,23 +39,20 @@ export class LoginComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.errorMessage = '';
-    console.log(form, form.value);
     this.firebase.loginUser(email, password, userName).subscribe({
       next: (data: any) => {
         const expDate = new Date(new Date().getTime() + data.expiresIn * 1000);
         data.displayName = userName;
-        console.log(data);
-        console.log(expDate);
         this.firebase.createUserStorage(
           data.displayName,
           data.email,
           data.localId,
           data.idToken,
           expDate,
-          this.gorest.gorestAPI
+          this.gorest.gorestAPI,
         );
         this.guard.isLogged = true;
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['../users']);
       },
       error: (error: HttpErrorResponse) => {
         this.errorMessage = this.handleError.handleLoginErrors(error);

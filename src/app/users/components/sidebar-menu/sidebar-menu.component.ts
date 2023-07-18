@@ -8,7 +8,6 @@ import { Account } from 'src/app/models/firebase.model';
 })
 export class SidebarMenuComponent implements OnInit {
   account!: Account;
-  now = new Date
 
   ngOnInit(): void {
     this.account = JSON.parse(localStorage.getItem('Account')!);

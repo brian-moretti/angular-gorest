@@ -1,0 +1,37 @@
+.login-container {
+  min-height: 100vh;
+}
+
+.home-form {
+  gap: 30px;
+}
+
+:host ::ng-deep .p-password, :host ::ng-deep .p-button, :host ::ng-deep .p-inputtext {
+  width: 100%;
+}
+
+:host ::ng-deep .p-button-icon-only {
+  position: absolute;
+  top: 2.5%;
+  left: 5%;
+  width: 3rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .home-form {
+    width: 100%;
+    padding: 10% 5%;
+  }
+
+  .login {
+    padding: 1em 0;
+  }
+
+  .login-container h3 {
+    text-align: center;
+  }
+
+  .registration {
+    flex-direction: column;
+  }
+}

@@ -5,7 +5,7 @@ export class Account {
     public id: string,
     private _token: string,
     public _expDate: Date,
-    public apiKeyGoRest: string
+    public apiKeyGoRest: string,
   ) {}
 
   get token() {

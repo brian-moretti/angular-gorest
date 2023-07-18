@@ -37,7 +37,8 @@
   border-left: 1px solid var(--color-theme);
 }
 
-.post-info h6, p{
+.post-info h6,
+p {
   font-weight: var(--font-light);
 }
 
@@ -47,7 +48,7 @@
   position: relative;
 }
 
-.comment-info h6{
+.comment-info h6 {
   font-weight: var(--font-light);
 }
 
@@ -66,56 +67,45 @@
   transform: translate(50%, -50%);
 }
 
-.nothing{
+.nothing {
   width: fit-content;
+  text-align: center;
   margin: 0 auto;
-  border: 1px solid var(--color-theme);
-  padding: 0 10px;
+  padding: 2px 25px;
   border-radius: 8px;
+  border: 2px solid var(--color-theme);
   box-shadow: 0 0 5px 1px var(--color-light-theme);
 }
 
-:host ::ng-deep {
-  .p-tabview {
-    max-width: calc(100% - 200px);
-    margin: 0 auto;
-  }
-  .p-tabview-nav {
-    gap: 1px;
-  }
+:host ::ng-deep .p-tabview {
+  max-width: calc(100% - 200px);
+  margin: 0 auto;
+}
+:host ::ng-deep .p-tabview-nav {
+  gap: 1px;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav {
+  background: var(--color-light-beige);
+}
+:host ::ng-deep .p-tabview-panels {
+  position: relative;
+  background: var(--color-dust-white);
+  box-shadow: 3px 3px 3px 1px var(--color-brown);
+}
 
-  .p-tabview .p-tabview-nav {
-    background: var(--color-light-beige);
-  }
-  /*! FIX */
-  .p-tabview-panels {
-    position: relative;
-    background: var(--color-dust-white);
-    box-shadow: 3px 3px 3px 1px var(--color-brown);
-  }
-
-  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-    background: var(--color-dust-white);
-  }
-  /*
-  .p-tabview-panels .adding-post{
-    position: absolute;
-    right: 5%;
-  } */
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: var(--color-dust-white);
 }
 
 @media only screen and (max-width: 1124px) {
-
   .user-profile {
     width: 60%;
     margin-bottom: 40px;
   }
 
-  :host ::ng-deep {
-    .p-tabview {
-      max-width: calc(100% - 100px);
-      margin: 0 auto;
-    }
+  :host ::ng-deep .p-tabview {
+    max-width: calc(100% - 100px);
+    margin: 0 auto;
   }
 }
 
@@ -147,24 +137,22 @@
     left: -5%;
   }
 
-  .gender-profile{
+  .gender-profile {
     top: 0;
     transform: translate(20%, -25%);
   }
 
-  .nothing{
+  .nothing {
     margin-top: 8%;
     width: 90%;
     text-align: center;
   }
 
-  :host ::ng-deep {
-    .p-tabview {
-      max-width: 95%;
-    }
-    .p-tabview-panels {
-      padding-left: 0.25rem;
-      padding-right: 0.25rem;
-    }
+  :host ::ng-deep .p-tabview {
+    max-width: 95%;
+  }
+  :host ::ng-deep .p-tabview-panels {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { UsersComments, UsersGoRest, UsersPosts } from '../models/gorest.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErrorsService } from './errors.service';
@@ -55,7 +55,7 @@ export class GorestService {
       .pipe(catchError(this.handleError.handleHttpErrors));
   }
 
-  addNewUser(body: {}): Observable<UsersGoRest> {
+  addNewUser(body: UsersGoRest): Observable<UsersGoRest> {
     return this.http
       .post<UsersGoRest>(this.gorestUsers + this.tokenApi, body, {
         headers: this.headers,

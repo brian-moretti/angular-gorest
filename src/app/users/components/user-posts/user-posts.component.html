@@ -35,6 +35,7 @@
         <div *ngIf="userPosts(info).length; else noPost">
           <ng-container *ngFor="let post of userPosts(info)">
             <div class="post-info">
+              <p class="id">ID: {{post.id}}</p>
               <h4>{{ post.title }}</h4>
               <p>{{ post.body }}</p>
               <ng-container *ngFor="let comment of postComments(post.id)">

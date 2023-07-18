@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from './services/firebase.service';
 import { Message } from 'primeng/api';
+import { AuthService } from './auth/auth.service';
+import { Subscription, interval } from 'rxjs';
+import { FirebaseService } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +10,30 @@ import { Message } from 'primeng/api';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private firebase: FirebaseService) {}
+  constructor(private guard: AuthService, private firebase: FirebaseService) {}
 
   messages!: Message[];
+  checkSessionSub: Subscription = new Subscription();
 
   ngOnInit(): void {
     this.checkSession();
+    this.checkSessionSub = interval(1000).subscribe(() => {
+      this.checkSession(); //? Alternativa a setTimeout()
+    });
   }
 
-  checkSession(): void {
-    let now = new Date();
-    let expDateSession: Date = new Date(
-      JSON.parse(localStorage.getItem('Account')!)._expDate
-    );
-    setTimeout(() => {
-      console.log(now > expDateSession);
-      if (now > expDateSession) {
+  checkSession() {
+    const storageData = localStorage.getItem('Account');
+
+    if (storageData) {
+      const getStorage = JSON.parse(storageData);
+      const expSession: Date = new Date(getStorage._expDate);
+      const now: Date = new Date();
+
+      if (now < expSession) {
+        this.guard.isLogged = true;
+      } else {
+        this.guard.isLogged = false;
         this.messages = [
           {
             severity: 'warn',
@@ -33,7 +43,6 @@ export class AppComponent implements OnInit {
         ];
         this.firebase.logoutUser();
       }
-      return this.checkSession(); //TESTARE RETURN
-    }, 1000);
+    }
   }
 }

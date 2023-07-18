@@ -10,28 +10,22 @@ form {
   padding: 10px;
 }
 
-:host ::ng-deep {
-  .p-float-label.textarea {
-    display: flex;
-  }
-
-  .p-float-label.textarea label {
-    margin: auto;
-  }
+:host ::ng-deep .p-float-label.textarea {
+  display: flex;
+}
+:host ::ng-deep .p-float-label.textarea label {
+  margin: auto;
 }
 
 @media only screen and (max-width: 1124px) {
   .element-container {
     width: 45%;
   }
-  :host ::ng-deep {
-    /*Campo testuale*/
-    .p-inputtext {
-      width: 100%;
-    }
-    .p-button {
-      width: 100%;
-    }
+  :host ::ng-deep /*Campo testuale*/ .p-inputtext {
+    width: 100%;
+  }
+  :host ::ng-deep .p-button {
+    width: 100%;
   }
 }
 

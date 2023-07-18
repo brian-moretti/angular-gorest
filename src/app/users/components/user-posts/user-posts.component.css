@@ -27,6 +27,12 @@
   position: relative;
 }
 
+.post-info .id{
+  font-weight: var(--font-semi-bold);
+  font-size: 12px;
+  text-decoration: underline;
+}
+
 .comment-info {
   margin: 2% auto;
   max-width: 75%;
@@ -91,8 +97,7 @@
 }
 
 @media only screen and (max-width: 1124px) {
-
-  .header{
+  .header {
     margin: 7% auto 15%;
     gap: 30px;
   }
@@ -153,15 +158,13 @@
     font-size: 1rem;
   }
 
-  :host ::ng-deep {
-    .p-paginator {
-      margin: 2% auto 6%;
-    }
-    .p-paginator .p-paginator-element {
-      min-width: 1rem;
-    }
-    .p-paginator .p-paginator-pages > * {
-      min-width: 2.5rem;
-    }
+  :host ::ng-deep .p-paginator {
+    margin: 2% auto 6%;
+  }
+  :host ::ng-deep .p-paginator .p-paginator-element {
+    min-width: 1rem;
+  }
+  :host ::ng-deep .p-paginator .p-paginator-pages > * {
+    min-width: 2.5rem;
   }
 }

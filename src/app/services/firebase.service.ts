@@ -41,9 +41,16 @@ export class FirebaseService {
     id: string,
     token: string,
     expDate: Date,
-    apiKeyGoRest: string
+    apiKeyGoRest: string,
   ) {
-    this.account = new Account(name, email, id, token, expDate, apiKeyGoRest);
+    this.account = new Account(
+      name,
+      email,
+      id,
+      token,
+      expDate,
+      apiKeyGoRest,
+    );
     localStorage.setItem('Account', JSON.stringify(this.account));
   }
 
@@ -62,11 +69,6 @@ export class FirebaseService {
     this.guard.isLogged = false;
     this.account = null;
     localStorage.removeItem('Account');
-    this.router.navigate(['/home']);
-    console.log(
-      this.guard.isLogged,
-      this.account,
-      localStorage.getItem('Account')
-    );
+    this.router.navigate(['auth']);
   }
 }

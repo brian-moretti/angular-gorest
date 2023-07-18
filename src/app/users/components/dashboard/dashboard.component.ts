@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   //? PER FARE UNSUBSCRIBE
-  test: Subscription = new Subscription();
+  unsubscribe: Subscription = new Subscription();
 
   users: UsersGoRest[] = [];
   filteredData: Array<UsersGoRest> = [];

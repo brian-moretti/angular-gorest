@@ -57,7 +57,7 @@
   word-break: break-all;
 }
 
-.user-info h2{
+.user-info h2 {
   font-size: 20px;
 }
 
@@ -67,58 +67,47 @@
   gap: 10px;
 }
 
-:host ::ng-deep {
-  .edit-btn > * {
-    background: var(--color-sand) /*#ece4d7*/;
-    border: none;
-  }
-
-  .edit-btn > *:hover {
-    background: var(--color-brown);
-  }
-
-  .delete-btn > * {
-    background: /*#c8c0ab*/ #14b8a6;
-    border: none;
-  }
-
-  .users-container .buttons .pi {
-    font-size: 1.2rem;
-  }
-
-  .header-dashboard .add-btn .p-button {
-    background: var(--color-theme);
-    color: var(--color-dust-white);
-  }
-  .header-dashboard .add-btn .p-button:hover {
-    background: #0d9488;
-    color: var(--color-dust-white);
-  }
-
-  .header-dashboard .add-btn .p-button .pi {
-    font-size: 1.2rem;
-  }
-
-  .p-paginator {
-    width: fit-content;
-    margin: 2% auto;
-  }
+:host ::ng-deep .edit-btn > * {
+  background: var(--color-sand) /*#ece4d7*/;
+  border: none;
+}
+:host ::ng-deep .edit-btn > *:hover {
+  background: var(--color-brown);
+}
+:host ::ng-deep .delete-btn > * {
+  background: /*#c8c0ab*/ #14b8a6;
+  border: none;
+}
+:host ::ng-deep .users-container .buttons .pi {
+  font-size: 1.2rem;
+}
+:host ::ng-deep .header-dashboard .add-btn .p-button {
+  background: var(--color-theme);
+  color: var(--color-dust-white);
+}
+:host ::ng-deep .header-dashboard .add-btn .p-button:hover {
+  background: #0d9488;
+  color: var(--color-dust-white);
+}
+:host ::ng-deep .header-dashboard .add-btn .p-button .pi {
+  font-size: 1.2rem;
+}
+:host ::ng-deep .p-paginator {
+  width: fit-content;
+  margin: 2% auto;
 }
 
 @media only screen and (max-width: 1124px) {
-
   .header-dashboard {
     justify-content: center;
   }
 
-  app-dashboard-header{
+  app-dashboard-header {
     margin: auto;
   }
 
-  :host ::ng-deep {
-    .header-dashboard p-button.p-element.add-btn {
-      text-align: end;
-    }
+  :host ::ng-deep .header-dashboard p-button.p-element.add-btn {
+    text-align: end;
   }
 }
 
@@ -128,25 +117,23 @@
     gap: 20px;
   }
 
-.user-info h2{
-  font-size: 18px;
-}
+  .user-info h2 {
+    font-size: 18px;
+  }
 
-.user-info p{
-  font-weight: var(--font-light);
-  font-size: 14px;
-}
+  .user-info p {
+    font-weight: var(--font-light);
+    font-size: 14px;
+  }
 
-  :host ::ng-deep {
-    .p-paginator {
-      margin: 2% auto 6%;
-    }
-    .p-paginator .p-paginator-element {
-      min-width: 1rem;
-    }
-    .p-paginator .p-paginator-pages > * {
-      min-width: 2.5rem;
-    }
+  :host ::ng-deep .p-paginator {
+    margin: 2% auto 6%;
+  }
+  :host ::ng-deep .p-paginator .p-paginator-element {
+    min-width: 1rem;
+  }
+  :host ::ng-deep .p-paginator .p-paginator-pages > * {
+    min-width: 2.5rem;
   }
   .user {
     flex: auto;

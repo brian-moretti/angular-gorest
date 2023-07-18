@@ -1,4 +1,4 @@
-.filter{
+.filter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,34 +6,26 @@
   margin: 3% auto;
 }
 
- :host ::ng-deep{
-  .p-selectbutton .p-button.p-highlight{
-    color: var(--color-dust-white);
-  }
-  .p-selectbutton .p-button{
-    color: var(--color-theme);
-  }
-
-  .p-button .p-button-label:hover{
-    color: var(--color-theme);
-  }
-
+:host ::ng-deep .p-selectbutton .p-button.p-highlight {
+  color: var(--color-dust-white);
+}
+:host ::ng-deep .p-selectbutton .p-button {
+  color: var(--color-theme);
+}
+:host ::ng-deep .p-button .p-button-label:hover {
+  color: var(--color-theme);
 }
 
 @media only screen and (max-width: 600px) {
-.filter{
-  flex-direction: column;
-  gap: 5px;
-}
+  .filter {
+    flex-direction: column;
+    gap: 5px;
+  }
 
-:host ::ng-deep {
-  .filter .p-inputtext {
+  :host ::ng-deep .filter .p-inputtext {
     width: 100%;
   }
-
-  .p-selectbutton .p-button{
+  :host ::ng-deep .p-selectbutton .p-button {
     width: 50%;
   }
-}
-
 }

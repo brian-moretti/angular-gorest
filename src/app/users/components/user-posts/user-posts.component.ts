@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Message } from 'primeng/api';
+import { PaginatorState } from 'primeng/paginator';
 import { from } from 'rxjs';
 import { UsersComments, UsersPosts } from 'src/app/models/gorest.model';
 import { ErrorsService } from 'src/app/services/errors.service';
@@ -33,10 +34,10 @@ export class UserPostsComponent implements OnInit {
   currentPage: number = 0;
   resultPerPage: number = 10;
   totalPerPage = this.resultPerPage;
-  onPageChange(event: any) {
-    this.currentPage = event.page + 1;
-    this.resultPerPage = event.rows;
-    this.elementDisplayed = event.first;
+  onPageChange(event: PaginatorState) {
+    this.currentPage = event.page! + 1;
+    this.resultPerPage = event.rows!;
+    this.elementDisplayed = event.first!;
     this.getUserPosts();
   }
 
@@ -46,6 +47,7 @@ export class UserPostsComponent implements OnInit {
         this.userInfo = [];
         data.map((element) => {
           this.userInfo.push(element.user_id);
+          this.userInfo = Array.from(new Set(this.userInfo))
         });
         this.posts = data;
         this.filteredPost = data;
@@ -153,14 +155,12 @@ export class UserPostsComponent implements OnInit {
   }
 
   filterPost(filterValues: { field: string; query: string }) {
-    console.log(filterValues);
     if (!filterValues.query) {
       this.posts = this.filteredPost;
       return;
     }
 
     const query = filterValues.query.toLowerCase().trim();
-    console.log(query);
 
     this.posts = this.filteredPost.filter((key) => {
       switch (filterValues.field) {

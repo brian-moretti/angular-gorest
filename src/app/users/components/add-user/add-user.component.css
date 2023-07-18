@@ -1,4 +1,4 @@
-.add-user{
+.add-user {
   position: fixed;
   width: 100vw;
   top: 0;
@@ -13,7 +13,7 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.close{
+.close {
   position: absolute;
   top: 0;
   right: 0;
@@ -22,12 +22,12 @@
   cursor: pointer;
 }
 
-.close .pi{
+.close .pi {
   font-size: 1.5rem;
   color: var(--color-brown);
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -40,28 +40,25 @@ form{
   background-color: var(--color-dust-white);
 }
 
-
-.gender{
+.gender {
   display: flex;
   justify-content: space-between;
 }
 
-.gender label{
+.gender label {
   margin-left: 5px;
 }
 
-:host ::ng-deep{
-  .p-selectbutton div{
-    width: 50%;
-  }
+:host ::ng-deep .p-selectbutton div {
+  width: 50%;
+}
 
-  .p-button{
-    width: 100%;
-  }
+:host ::ng-deep .p-button {
+  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
-  form{
+  form {
     padding: 15% 10%;
   }
 }

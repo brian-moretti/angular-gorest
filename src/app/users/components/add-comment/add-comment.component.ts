@@ -26,7 +26,6 @@ export class AddCommentComponent {
       body: form.value.body,
     };
     this.comment.emit(this.newComment);
-    console.log(form.value);
     form.reset();
   }
 }

@@ -31,12 +31,11 @@ export class SignupComponent {
     const gender = form.value.gender;
     const password = form.value.password;
     this.errorMessage = '';
-    console.log(form.value);
+
     this.firebase.signupNewUser(userName, email, password, gender).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.userSignup = data;
-        this.router.navigate(['/login']);
+        this.router.navigate(['../login']);
         form.reset();
       },
       error: (error: HttpErrorResponse) => {

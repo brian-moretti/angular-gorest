@@ -1,17 +1,17 @@
 <p-button icon="pi pi-arrow-right" (onClick)="showMenu()"></p-button>
 <menu class="container-menu" [ngClass]="hideMenu ? 'showMenu' : null">
-  <h1 class="title"><a routerLink="/dashboard">GoRest a Post</a></h1>
+  <h1 class="title"><a routerLink="">GoRest a Post</a></h1>
 
   <div class="buttons">
     <p-button
-      routerLink="/dashboard"
+      routerLink=""
       label="Dashboard"
       icon="pi pi-home"
       iconPos="left"
       styleClass="p-button-link"
     ></p-button>
     <p-button
-      routerLink="/posts"
+      routerLink="/users/posts"
       label="All posts"
       icon="pi pi-book"
       iconPos="left"
@@ -19,9 +19,11 @@
     ></p-button>
   </div>
   <div *ngIf="account" class="user-profile">
-    <h6>{{ account.name }}</h6>
-    {{ account.email }} Your session will expires at:
-    {{ account._expDate | date : "shortTime" }}
+    <div class="account-info">
+      <span>{{ account.name }}</span>
+      <span>{{ account.email }}</span>
+      <span>Your session will expires at:{{ account._expDate | date : "shortTime" }}</span>
+   </div>
     <app-logout></app-logout>
   </div>
   <app-footer></app-footer>

@@ -3,7 +3,7 @@ form {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 25px;
   max-width: 75%;
   margin: 3% auto;
   border-radius: 8px;
@@ -14,26 +14,20 @@ textarea {
   width: 100%;
 }
 
-:host ::ng-deep {
-  .p-inputtext {
-    padding: 4px;
-  }
-
-  .p-button {
-    padding: 16px;
-    height: 30px;
-    width: 30px;
-  }
-
-  .p-float-label.textarea {
-    display: flex;
-  }
+:host ::ng-deep .p-inputtext {
+  padding: 4px;
+}
+:host ::ng-deep .p-button {
+  padding: 16px;
+  height: 30px;
+  width: 30px;
+}
+:host ::ng-deep .p-float-label.textarea {
+  display: flex;
 }
 
-
 @media only screen and (max-width: 600px) {
-
-  form{
+  form {
     margin: 8% auto;
     max-width: 85%;
   }
@@ -41,18 +35,13 @@ textarea {
   .element-container {
     width: 100%;
   }
-  :host ::ng-deep {
-    /*Campo testuale*/
-    .p-inputtext {
-      width: 100%;
-    }
-    /*Spazio elementeo*/
-    .p-float-label {
-      width: 100%;
-    }
-
-    .p-button {
-      width: 100%;
-    }
+  :host ::ng-deep /*Campo testuale*/ .p-inputtext {
+    width: 100%;
+  }
+  :host ::ng-deep /*Spazio elementeo*/ .p-float-label {
+    width: 100%;
+  }
+  :host ::ng-deep .p-button {
+    width: 100%;
   }
 }
