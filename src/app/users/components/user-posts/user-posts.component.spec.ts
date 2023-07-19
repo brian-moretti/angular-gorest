@@ -18,7 +18,8 @@ describe('UserPostsComponent', () => {
   let fixture: ComponentFixture<UserPostsComponent>;
   let gorest: GorestService;
   let event: PaginatorState;
-  let comments: UsersComments;
+  let comment: UsersComments;
+  let comments: UsersComments[];
   let posts: UsersPosts;
   let error: HttpErrorResponse;
 
@@ -82,13 +83,13 @@ describe('UserPostsComponent', () => {
 
   it('add comments in the array', () => {
     let id = 1;
-    [comments] = [
+    comments = [
       { name: '', email: '', body: '' },
       { name: '', email: '', body: '' },
     ];
-    spyOn(gorest, 'getUserComments').and.returnValue(of([comments]));
+    spyOn(gorest, 'getUserComments').and.returnValue(of(comments));
     component.getPostsComments(id);
-    expect(component.comments).toEqual([comments]);
+    expect(component.comments).toEqual(comments);
   });
 
   it('handle getPostsComments errors', () => {
@@ -134,5 +135,21 @@ describe('UserPostsComponent', () => {
     let filterValue = { field: '', query: '' };
     expect(component.posts).toEqual(component.filteredPost);
     component.filterPost(filterValue);
+  });
+
+  it('handle error on addComment', () => {
+    error = new HttpErrorResponse({});
+    let post_id = 1;
+    comment = { id: 1, post_id: 1, body: '', name: '', email: '' };
+    spyOn(gorest, 'addUserComments').and.returnValue(throwError(() => error));
+    component.addComment(post_id, comment);
+    expect(component.errorMessage).toBeDefined();
+    expect(component.message).toEqual([
+      {
+        severity: 'warn',
+        summary: 'Warning',
+        detail: component.errorMessage,
+      },
+    ]);
   });
 });

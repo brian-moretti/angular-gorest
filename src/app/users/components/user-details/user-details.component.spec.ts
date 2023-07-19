@@ -24,7 +24,9 @@ describe('UserDetailComponent', () => {
   let fixture: ComponentFixture<UserDetailsComponent>;
   let gorest: GorestService;
   let posts: UsersPosts[];
+  let post: UsersPosts;
   let comments: UsersComments[];
+  let comment: UsersComments;
   let account: UsersGoRest;
   let error: HttpErrorResponse;
 
@@ -103,5 +105,36 @@ describe('UserDetailComponent', () => {
     expect(component.hidden).toBeFalsy();
     component.showNewPostForm();
     expect(component.hidden).toBeTruthy();
+  });
+
+  it('handle error on addUserPost', () => {
+    error = new HttpErrorResponse({});
+    post = { id: 1, title: '', body: '', user_id: 1 };
+    spyOn(gorest, 'addUserPost').and.returnValue(throwError(() => error));
+    component.addUserPost(post);
+    expect(component.errorMessage).toBeDefined();
+    expect(component.message).toEqual([
+      {
+        severity: 'warn',
+        summary: 'Warning',
+        detail: component.errorMessage,
+      },
+    ]);
+  });
+
+  it('handle error on addComment', () => {
+    error = new HttpErrorResponse({});
+    let post_id = 1;
+    comment = { id: 1, post_id: 1, body: '', name: '', email: '' };
+    spyOn(gorest, 'addUserComments').and.returnValue(throwError(() => error));
+    component.addComment(post_id, comment);
+    expect(component.errorMessage).toBeDefined();
+    expect(component.message).toEqual([
+      {
+        severity: 'warn',
+        summary: 'Warning',
+        detail: component.errorMessage,
+      },
+    ]);
   });
 });
