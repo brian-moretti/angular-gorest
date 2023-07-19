@@ -33,7 +33,7 @@ The applications is build using:
 
 The application has the following features:
 - Test Code-Coverage greater than 60%
-- Is divided into 3 NGModules: 'Auth', 'Users' and 'App'. Auth and Users are configured to be Lazy-Load. You can see the process spying the Devs tools of your Browser.
+- 3 NGModules: 'Auth', 'Users' and 'App'. Auth and Users are configured to be Lazy-Load. You can see the process spying the Devs tools of your Browser.
 
 ## :gear:	Config the application on locale
 Copy the repository from my Github  
