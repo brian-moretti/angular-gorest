@@ -11,9 +11,9 @@
   --color-theme: #14b8a6;
   --color-light-theme: #99f6e4;
   --color-beige: rgb(148, 120, 83);
-  --color-brown: rgb(127, 86, 57);
-  --color-light-beige: rgb(229, 217, 205);
-  --color-dust-white: rgb(243, 244, 241);
+  --color-brown: #7f5639;
+  --color-light-beige: #e5d9cd;
+  --color-dust-white: #f3f4f1;
   --color-sand: #cbbba3;
   --font-family: "Prompt", sans-serif;
   --font-light: 300;

@@ -1,56 +1,48 @@
 # Angular Project by Brian Moretti
 
-Welcome to my 1° Angular Project made for the Front-End Master of Star 2 Impact University
+Welcome to my 1° Angular Project made for the Front-End Master of Star2Impact University
 
-## GoRest App -
+## Try now
+If you wanna put your hand right now to my project just go there [GoRest a Post](https://s2i-nttdata.web.app/auth)
+## GoRest a Post - Application
 
-Welcome to the GoRest Application. This application use the RestAPI available at [Go Rest](https://gorest.co.in/)
+Welcome to my GoRest a Post application. This application use the RestAPI available at [GoRest](https://gorest.co.in/)
 
 ### Main functionality
 
-- **Log Users:** Users can log into the application using a username, an email and a password. Then they can access to the application throught thair credential
+- **Signup/Login Users:** Users can signup into the application using a username, an email and a password. Then, on the Login page, they can access to the application throught their credential.
 
-- **Dashboard:** The application shows a list of the users created. In this page you can esily look a the details of every user, create a new user or delete one of them. All these functionality can be activated throught buttons located in the view.
+- **Dashboard:** This page shows a list of the Users created. In this page you can easily look at the details of every user, create a new user or delete one of them. All these functionality can be activated throught the buttons located in the view.
 
-- **User's Details:** In this page you will find all the details of the user created: name, email, id, gender, status and the posts linked to this specific user. You can add a new post filling the form and, also, leave comments to the posts you prefer.
+- **User's Details:** In this page you will find all the details of the user created: name, email, id, gender, status, the posts linked to that specific user and their relative comments. You can add a new post filling the form and, also, leave comments to the posts you prefer.
 
-- **Posts List:** This application has also a specific page where you can view all the posts created and sorted by ID. In this page is possible to create a new post above the other for a specific user and, also, leave comments to these posts
+- **Post's List:** This page shows all the posts created and sorted by ID. In this page is possible to create a new post above the others for a specific user and, also, leave comments to these posts.
 
-- **Sidebar Menu:** On the left side of the screen there is a Menu that helps you to navigate throught the application and a button to Logout. With this
+- **Sidebar Menu:** On the left side of the screen there is a Menu that helps you to navigate throught the application and a button to Logout. This sidebar includes aome informations of the Users Logged: name, email and when the session will expire
 
-- **Filter and Pagination:** The Dashboard and the Post's List Pages are provided with a Paginator element and a filter element.
-  - The filter element will help you to filter the User's List by 'Email' or 'Name' and the Post's List by 'ID', 'User's ID', 'Post's Title' and 'Post's Body'
-  - The Paginator element gives you the possibilty to dedice how many elements you want to see in the page and change pages to view other results
+- **Filter and Pagination:** The Dashboard and the Post's List Pages are provided with a Paginator element and a Filter:
+  - The filter will help you to filter the User's List by 'Email' or 'Name' and the Post's List by 'ID', 'User's ID', 'Post's Title' and 'Post's Body'.
+  - The Paginator element gives you the possibilty to dedice how many records you would like to see in the view and to change page to see other results
 
+### How is build:
+The applications is build using:
+- Angular
+- Pure CSS
+- PrimeNG
+- Firebase (Hosting & Authentication)
 
-    To use the application you need first to signup with a username, an email and a password.
-    After the login, you will navigate to the main area where you will view all the users created.
-    On this page you can easily look at his details, create a new user or delete a specific user.
+The application has the following features:
+- Test Code-Coverage greater than 60%
+- Is divided into 3 NGModules: 'Auth', 'Users' and 'App'. Auth and Users are configured to be Lazy-Load. You can see the process spying the Devs tools of your Browser.
 
-If you decide to examine the details of a user you will navigate into his specific page.
+## Config the application on locale
+Copy the repository from my github
+Run `npm install` to install all the modules needed to use the application
+Run `ng serve -o` or `ng serve open` to launch the app locally and open immediately `http://localhost:4200/`.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
+Run `ng test` to execute the unit tests via Karma
 
-## Development server
+Run `ng test --no-watch --code-coverage`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contact me
+If you find some bugs to fix or simply you want to send me a message
