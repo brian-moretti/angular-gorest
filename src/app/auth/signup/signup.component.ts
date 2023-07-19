@@ -35,7 +35,7 @@ export class SignupComponent {
     this.firebase.signupNewUser(userName, email, password, gender).subscribe({
       next: (data: any) => {
         this.userSignup = data;
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['auth/login']);
         form.reset();
       },
       error: (error: HttpErrorResponse) => {
