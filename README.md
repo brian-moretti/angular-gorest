@@ -2,13 +2,13 @@
 
 Welcome to my 1° Angular Project made for the Front-End Master of Star2Impact University
 
-## Try now
+## :technologist: Try now
 If you wanna put your hand right now to my project just go there [GoRest a Post](https://s2i-nttdata.web.app/auth)
 ## GoRest a Post - Application
 
 Welcome to my GoRest a Post application. This application use the RestAPI available at [GoRest](https://gorest.co.in/)
 
-### Main functionality
+### :computer: Main functionality
 
 - **Signup/Login Users:** Users can signup into the application using a username, an email and a password. Then, on the Login page, they can access to the application throught their credential.
 
@@ -24,7 +24,7 @@ Welcome to my GoRest a Post application. This application use the RestAPI availa
   - The filter will help you to filter the User's List by 'Email' or 'Name' and the Post's List by 'ID', 'User's ID', 'Post's Title' and 'Post's Body'.
   - The Paginator element gives you the possibilty to dedice how many records you would like to see in the view and to change page to see other results
 
-### How is build:
+### :hammer: How is build:
 The applications is build using:
 - Angular
 - Pure CSS
@@ -35,14 +35,11 @@ The application has the following features:
 - Test Code-Coverage greater than 60%
 - Is divided into 3 NGModules: 'Auth', 'Users' and 'App'. Auth and Users are configured to be Lazy-Load. You can see the process spying the Devs tools of your Browser.
 
-## Config the application on locale
-Copy the repository from my github
-Run `npm install` to install all the modules needed to use the application
-Run `ng serve -o` or `ng serve open` to launch the app locally and open immediately `http://localhost:4200/`.
+## :gear:	Config the application on locale
+Copy the repository from my Github  
+Run `npm install` to install all the modules needed to use the application  
+Run `ng serve -o` or `ng serve open` to launch the app locally and open immediately `http://localhost:4200/`.  
+Run `ng test` to execute the unit tests via Karma  
 
-Run `ng test` to execute the unit tests via Karma
-
-Run `ng test --no-watch --code-coverage`
-
-## Contact me
-If you find some bugs to fix or simply you want to send me a message
+## :incoming_envelope: Contact me
+If you find some bugs to fix or simply you want to send me a message please write me at [brianmoretti2512@gmail.com](mailto:brianmoretti2512@gmail.com)
