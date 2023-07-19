@@ -54,17 +54,12 @@ export class DashboardComponent implements OnInit {
     this.currentPage = event.page + 1;
     this.resultPerPage = event.rows;
     this.elementDisplayed = event.first;
-    console.log(event);
-    console.log(this.currentPage);
-    console.log(this.resultPerPage);
-
     this.getUsers();
   }
 
   addUser(newUser: UsersGoRest) {
     this.gorest.addNewUser(newUser).subscribe({
       next: (data) => {
-        console.log(data);
         this.getUsers();
       },
       error: (error: HttpErrorResponse) => {
@@ -88,7 +83,6 @@ export class DashboardComponent implements OnInit {
         ];
       },
     });
-    console.log(id);
   }
 
   filterUsers(filterValues: { field: string; query: string }) {

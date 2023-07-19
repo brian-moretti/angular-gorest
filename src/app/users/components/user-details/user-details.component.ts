@@ -117,7 +117,6 @@ export class UserDetailsComponent implements OnInit {
 
     this.gorest.addUserPost(this.userRouteId, post).subscribe({
       next: (data) => {
-        console.log(data);
         this.posts.splice(0, 0, data);
       },
       error: (error: HttpErrorResponse) => {

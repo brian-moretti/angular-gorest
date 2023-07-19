@@ -118,7 +118,6 @@ export class UserPostsComponent implements OnInit {
     post.user_id = user_id;
     this.gorest.addUserPost(user_id, post).subscribe({
       next: (data) => {
-        console.log(data);
         this.posts.splice(0, 0, data);
         this.expandedNewPostId = null;
       },
