@@ -115,6 +115,7 @@ p {
     display: flex;
     flex-direction: column;
     padding: 8px 12px;
+    margin-top: 50px;
   }
 
   .user-name {
@@ -146,6 +147,7 @@ p {
     margin-top: 8%;
     width: 90%;
     text-align: center;
+    font-size: 14px;
   }
 
   :host ::ng-deep .p-tabview {

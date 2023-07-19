@@ -3,6 +3,7 @@ import { Observable, catchError } from 'rxjs';
 import { UsersComments, UsersGoRest, UsersPosts } from '../models/gorest.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErrorsService } from './errors.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +13,18 @@ export class GorestService {
 
   //* GoRest API
 
-  gorestAPI =
-    '60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
-  gorestUsers = 'https://gorest.co.in/public/v2/users';
-  gorestPosts = 'https://gorest.co.in/public/v2/posts';
-  gorestComments = 'https://gorest.co.in/public/v2/comments';
-  gorestTodos = 'https://gorest.co.in/public/v2/todos';
+  gorestAPI = environment.gorestAPI;
+  //'60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
+  gorestUsers = environment.gorestUsers; //'https://gorest.co.in/public/v2/users';
+  gorestPosts = environment.gorestPosts; //'https://gorest.co.in/public/v2/posts';
+  gorestComments = environment.gorestComments; //'https://gorest.co.in/public/v2/comments';
 
-  tokenApi =
-    '?access-token=60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
+  tokenApi = environment.tokenApi; //'?access-token=60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a';
 
   headers = new HttpHeaders({
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization:
-      'Bearer 60cd1406d0defd3901e0e70b768eb54ab3e27f4ac1eb1fba2eae261857797c7a',
+    Authorization: `Bearer ${environment.gorestAPI}`,
   });
 
   //* GoRest Users

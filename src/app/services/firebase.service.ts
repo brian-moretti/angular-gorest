@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { catchError } from 'rxjs';
 import { ErrorsService } from './errors.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class FirebaseService {
     private router: Router
   ) {}
 
-  APIKeyFirebase = 'AIzaSyBqezR5xu8V631clNX5xjEbhL3PhZePUYY';
+  APIKeyFirebase = environment.APIKeyFirebase; //'AIzaSyBqezR5xu8V631clNX5xjEbhL3PhZePUYY';
   firebaseSignupRESTAPI = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.APIKeyFirebase}`;
   firebaseLoginRESTAPI = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.APIKeyFirebase}`;
 

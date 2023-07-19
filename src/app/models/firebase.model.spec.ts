@@ -10,7 +10,7 @@ describe('firebaseModel', () => {
   it('if session is expired token do not exist', () => {
     let passed = new Date().getTime() - 60 * 60 * 1000;
     account._expDate = new Date(passed);
-    expect(account.token).toBeNull;
+    expect(account.token).toBeNull();
   });
 
   it('if session is still valid token exist', () => {

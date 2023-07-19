@@ -46,12 +46,6 @@ describe('SignupComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('', () => {
-    component.onSubmitSignup(form);
-    spyOn(firebase, 'signupNewUser').and.returnValue(of(account));
-    component.userSignup = account
-  });
-
   it('should show error on field change', () => {
     component.onFieldChange();
     expect(component.showError).toBeTruthy();

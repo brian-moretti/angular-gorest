@@ -1,12 +1,13 @@
 <form #newCommentForm="ngForm" (ngSubmit)="form(newCommentForm)">
   <span class="p-float-label">
-    <input pInputText id="name" [(ngModel)]="newComment.name" name="name" />
+    <input pInputText id="name" [(ngModel)]="newComment.name" type="text" name="name" />
     <label htmlFor="name">Username</label>
   </span>
   <span class="p-float-label">
     <input
       pInputText
       id="email"
+      type="email"
       [(ngModel)]="newComment.email"
       autocomplete="off"
       name="email"

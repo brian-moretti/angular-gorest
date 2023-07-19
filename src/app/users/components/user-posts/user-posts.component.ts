@@ -47,7 +47,7 @@ export class UserPostsComponent implements OnInit {
         this.userInfo = [];
         data.map((element) => {
           this.userInfo.push(element.user_id);
-          this.userInfo = Array.from(new Set(this.userInfo))
+          this.userInfo = Array.from(new Set(this.userInfo));
         });
         this.posts = data;
         this.filteredPost = data;
@@ -103,6 +103,13 @@ export class UserPostsComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          {
+            severity: 'warn',
+            summary: 'Warning',
+            detail: this.errorMessage,
+          },
+        ];
       },
     });
   }
@@ -117,6 +124,14 @@ export class UserPostsComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         this.errorMessage = this.handleError.handleGoRestErrors(error);
+        this.message = [
+          {
+            severity: 'warn',
+            summary: 'Warning',
+            detail: this.errorMessage,
+          },
+        ];
+
       },
     });
   }

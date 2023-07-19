@@ -41,12 +41,12 @@ describe('FirebaseService', () => {
       .signupNewUser(name, email, password, gender)
       .subscribe((response) => {
         expect(response).toEqual(mockResponse);
-        const mockReq = controller.expectOne(service.firebaseSignupRESTAPI);
-        expect(mockReq.request.method).toBe('POST');
       });
+    const mockReq = controller.expectOne(service.firebaseSignupRESTAPI);
+    expect(mockReq.request.method).toBe('POST');
   });
 
-/*    it('put user info in the localStorage', () => {
+  /*    it('put user info in the localStorage', () => {
     const name = '';
     const email = '';
     const id = '';
